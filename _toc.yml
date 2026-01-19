@@ -32,5 +32,6 @@ parts:
 
   - caption: Appendices
     chapters:
-      - file: book/build_jupyterbook
       - file: book/bibliography
+      - file: book/build_jupyterbook
+      
