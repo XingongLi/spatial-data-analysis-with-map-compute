@@ -3,21 +3,34 @@
 
 format: jb-book
 root: index
-chapters:
-  - file: book/markdown
-  - file: book/introduction
-  - file: book/notebooks
-  - file: book/bibliography
-# Or you organize the TOC by parts
 
-# parts:
-#   - caption: Chapters
-#     numbered: true
-#     maxdepth: 2
-#     chapters:
-#       - file: book/markdown
-#       - file: book/introduction
-#       - file: book/notebooks
-#   - caption: Appendices
-#     chapters:
-#       - file: book/bibliography
+parts:
+  - caption: Preface
+    numbered: false
+    maxdepth: 2
+    chapters:
+      - file: book/preface
+
+  - caption: Geospatial Fundamentals
+    numbered: true
+    maxdepth: 2
+    chapters:
+      - file: book/markdown
+      - file: book/introduction
+
+  - caption: The Map Compute Framework
+    numbered: true
+    maxdepth: 2
+    chapters:
+      - file: book/notebooks
+  
+  - caption: Spatial Analysis with Map Compute Framework
+    numbered: true
+    maxdepth: 2
+    chapters:
+      - file: book/markdown2
+
+  - caption: Appendices
+    chapters:
+      - file: book/build_jupyterbook
+      - file: book/bibliography
