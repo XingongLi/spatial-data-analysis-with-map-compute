@@ -1,0 +1,962 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Fundamental/Basic Spatial Relationships (co-location) &#8212; Jupyter Book Demo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/colocation';</script>
+    <link rel="canonical" href="https://giswqs.github.io/jupyter-book-demo/book/colocation.html" />
+    <link rel="icon" href="../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Fundamental Spatial Relationship (Distance)" href="distance.html" />
+    <link rel="prev" title="2. Basic Statistics" href="basic_statistics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Jupyter Book Demo - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Jupyter Book Demo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="geographic_data.html">1. Fundamentals of Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_statistics.html">2. Basic Statistics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Fundamental/Basic Spatial Relationships (co-location)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distance.html">4. Fundamental Spatial Relationship (Distance)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">5. Introduction to Open Publishing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">6. How to Write and Publish a Book</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Map Compute Framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">7. Content with notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spatial Analysis with Map Compute Framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown2.html">8. Introduction to Open Publishing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_jupyterbook.html">How to write a book using Jupyter-Book on Github</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/giswqs/jupyter-book-demo/main?urlpath=tree/book/colocation.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/giswqs/jupyter-book-demo/blob/main/book/colocation.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/edit/main/book/colocation.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/issues/new?title=Issue%20on%20page%20%2Fbook/colocation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/colocation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/book/colocation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fundamental/Basic Spatial Relationships (co-location)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topics">3.1. Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-basic-spatial-relationships">3.2. Fundamental/Basic Spatial Relationships</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#co-locational-relationships">3.3. Co-locational Relationships</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qualitative-locational-topological-relationship">3.4. Qualitative Locational (Topological) Relationship</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-9im">3.5. DE-9IM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-9im-examples">3.6. DE-9IM Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantitative-co-locational-relationship">3.7. Quantitative Co-locational Relationship</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-overlay">3.8. Map Overlay</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometry-of-new-mapping-units">3.9. Geometry of New Mapping Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-relations-between-mus">3.10. Identify Relations between MUs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-overlay-on-raster-maps">3.11. Map Overlay on Raster Maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-overlay-on-vector-maps">3.12. Map Overlay on Vector Maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes-of-the-new-mapping-units">3.13. Attributes of the New Mapping Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay-tools-in-arcgis">3.14. Overlay Tools in ArcGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-arcgis-overlay-tools-to-kinds-of-mus-kept">3.15. Map ArcGIS Overlay Tools to Kinds of MUs Kept</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clip-tool-in-arcgis">3.16. Clip Tool in ArcGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-overlay-tools-in-arcgis">3.17. Other Overlay Tools in ArcGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay-and-attribute-table">3.18. Overlay and Attribute Table</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fundamental-basic-spatial-relationships-co-location">
+<h1><span class="section-number">3. </span>Fundamental/Basic Spatial Relationships (co-location)<a class="headerlink" href="#fundamental-basic-spatial-relationships-co-location" title="Link to this heading">#</a></h1>
+<section id="topics">
+<h2><span class="section-number">3.1. </span>Topics<a class="headerlink" href="#topics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Co-locational spatial relationship</p></li>
+<li><p>Readings: Lloyd Chp. 5</p></li>
+</ul>
+</section>
+<section id="fundamental-basic-spatial-relationships">
+<h2><span class="section-number">3.2. </span>Fundamental/Basic Spatial Relationships<a class="headerlink" href="#fundamental-basic-spatial-relationships" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>Relationships between two attribute values</p>
+<ul>
+<li><blockquote>
+<div><p>, &lt;</p>
+</div></blockquote>
+</li>
+<li><p>difference, ratio</p></li>
+</ul>
+</li>
+<li><p>Relationships between two locations (spatial relationships)</p>
+<ul class="simple">
+<li><p>= (occupy the exact same space)</p></li>
+<li><p>Co-locate (share some space, i.e., overlap in space)</p></li>
+<li><p>Distance (no co-locate)</p></li>
+</ul>
+</li>
+<li><p>Mapping unit as location in practice</p></li>
+</ul>
+</section>
+<section id="co-locational-relationships">
+<h2><span class="section-number">3.3. </span>Co-locational Relationships<a class="headerlink" href="#co-locational-relationships" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Share some space</p></li>
+<li><p>Qualitative co-locational relationship</p>
+<ul>
+<li><p>Intersect, touch, contain, …, disjoint</p></li>
+<li><p>Independent of coordinates</p></li>
+<li><p>Topological relationship</p></li>
+</ul>
+</li>
+<li><p>Quantitative co-locational relationship</p>
+<ul>
+<li><p>Where is the shared (or not shared) space located?</p></li>
+<li><p>Based on and derived from coordinates</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="qualitative-locational-topological-relationship">
+<h2><span class="section-number">3.4. </span>Qualitative Locational (Topological) Relationship<a class="headerlink" href="#qualitative-locational-topological-relationship" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Locations that share some space</p>
+<ul>
+<li><p>intersect, touch, contain, …</p></li>
+</ul>
+</li>
+<li><p>Most GIS support some common spatial relationships</p>
+<ul>
+<li><p>Hard to define precisely</p></li>
+<li><p>intersect, touch, contain, …</p></li>
+</ul>
+</li>
+<li><p>Dimensionally Extended 9-Intersection Model (DE-9IM)</p>
+<ul>
+<li><p>Decompose a MU into interior, boundary and exterior</p></li>
+<li><p>Relationship base on the dimensionality of the intersection of boundary, interior, and exterior</p></li>
+<li><p>9-intersection model (9IM) is a special case (Egenhofer and Herring, 1991)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="de-9im">
+<h2><span class="section-number">3.5. </span>DE-9IM<a class="headerlink" href="#de-9im" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A feature decomposed into interior (I), boundary (B) and exterior (E)</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Feature Type</p></th>
+<th class="head text-left"><p>Interior (I)</p></th>
+<th class="head text-left"><p>Boundary (B)</p></th>
+<th class="head text-left"><p>Exterior (E)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Polygon</strong></p></td>
+<td class="text-left"><p>points within the polygon</p></td>
+<td class="text-left"><p>the rings</p></td>
+<td class="text-left"><p>points not in the polygon</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Line</strong></p></td>
+<td class="text-left"><p>points of the line except endpoints</p></td>
+<td class="text-left"><p>the endpoints</p></td>
+<td class="text-left"><p>points not on the line</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Point</strong></p></td>
+<td class="text-left"><p>the point</p></td>
+<td class="text-left"><p>empty set</p></td>
+<td class="text-left"><p>points other than the point</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>Dimensionality of intersection: {None (-1), Point (0), Line (1), Area (2)}</p></li>
+</ul>
+</section>
+<section id="de-9im-examples">
+<h2><span class="section-number">3.6. </span>DE-9IM Examples<a class="headerlink" href="#de-9im-examples" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A contains B: <span class="math notranslate nohighlight">\(I(B) \cap E(A) = \varnothing\)</span> and <span class="math notranslate nohighlight">\(I(A) \cap I(B) \neq \varnothing\)</span></p></li>
+<li><p>A disjoint B: <span class="math notranslate nohighlight">\(I(A) \cap I(B) = \varnothing\)</span> and <span class="math notranslate nohighlight">\(I(A) \cap B(B) = \varnothing\)</span> and <span class="math notranslate nohighlight">\(B(A) \cap I(B) = \varnothing\)</span> and <span class="math notranslate nohighlight">\(B(A) \cap B(B) = \varnothing\)</span></p></li>
+</ul>
+</section>
+<section id="quantitative-co-locational-relationship">
+<h2><span class="section-number">3.7. </span>Quantitative Co-locational Relationship<a class="headerlink" href="#quantitative-co-locational-relationship" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Where is the shared/not shared space located?</p></li>
+<li><p>Use mapping units (MUs) as the location</p>
+<ul>
+<li><p>New MUs created as the result of overlapping existing MUs</p></li>
+<li><p>Also called Map Overlay</p></li>
+<li><p>Attributes of new MUs are associated with original attributes</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="map-overlay">
+<h2><span class="section-number">3.8. </span>Map Overlay<a class="headerlink" href="#map-overlay" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Create new maps (MUs) based on existing maps (MUs)</p></li>
+<li><p>Vertical integration</p></li>
+<li><p>Two steps</p>
+<ol class="arabic simple">
+<li><p>Determine the geometry of new mapping units</p>
+<ul>
+<li><p>Overlap existing mapping units</p></li>
+</ul>
+</li>
+<li><p>Assign attribute values to the new mapping units</p>
+<ul>
+<li><p>Inherit from existing mapping units</p></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="geometry-of-new-mapping-units">
+<h2><span class="section-number">3.9. </span>Geometry of New Mapping Units<a class="headerlink" href="#geometry-of-new-mapping-units" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Intersect boundaries of original MUs to create new MUs</p></li>
+<li><p>New MUs are more “homogeneous” than original MUs</p></li>
+</ul>
+</section>
+<section id="identify-relations-between-mus">
+<h2><span class="section-number">3.10. </span>Identify Relations between MUs<a class="headerlink" href="#identify-relations-between-mus" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>For two maps A and B, four kinds of new mapping units (at most) can be created:</p>
+<ul>
+<li><p>MUs in A and also in B (A AND B)</p></li>
+<li><p>MUs in A but not in B (A NOT B)</p></li>
+<li><p>MUs in B but not in A (B NOT A)</p></li>
+<li><p>MUs neither in A nor in B (NOT A AND NOT B)</p></li>
+</ul>
+</li>
+<li><p>Total space = (A AND B) + (A NOT B) + (B NOT A) + (NOT A AND NOT B)</p></li>
+</ul>
+</section>
+<section id="map-overlay-on-raster-maps">
+<h2><span class="section-number">3.11. </span>Map Overlay on Raster Maps<a class="headerlink" href="#map-overlay-on-raster-maps" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Determine the geometry of new MUs</p>
+<ul>
+<li><p>Two raster maps must have the same “geometry”</p>
+<ul>
+<li><p>Same resolution, same orientation, same extent</p></li>
+</ul>
+</li>
+<li><p>New MUs are just the original cells</p></li>
+</ul>
+</li>
+<li><p>Assign attribute values to the new MUs</p>
+<ul>
+<li><p>Combine values of original cells at the same location</p></li>
+<li><p>Map Algebra (Tomlin, 1990)</p></li>
+</ul>
+</li>
+<li><p>Relation between cells is 1-to-1</p></li>
+</ul>
+</section>
+<section id="map-overlay-on-vector-maps">
+<h2><span class="section-number">3.12. </span>Map Overlay on Vector Maps<a class="headerlink" href="#map-overlay-on-vector-maps" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Determine the geometry of new MUs</p>
+<ul>
+<li><p>Intersect boundaries of original MUs to create new MUs</p></li>
+</ul>
+</li>
+<li><p>Assign attribute values to the new MUs</p>
+<ul>
+<li><p>Combine values of original MUs</p></li>
+</ul>
+</li>
+<li><p>Relation between MUs is typically M-to-N</p></li>
+</ul>
+</section>
+<section id="attributes-of-the-new-mapping-units">
+<h2><span class="section-number">3.13. </span>Attributes of the New Mapping Units<a class="headerlink" href="#attributes-of-the-new-mapping-units" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Typically a combination of the attributes of the original mapping units</p>
+<ul>
+<li><p>Multi-valued map</p></li>
+<li><p><span class="math notranslate nohighlight">\(Value_{new} = \{Value_A, Value_B\}\)</span></p></li>
+</ul>
+</li>
+<li><p>A new attribute value can be calculated based on original values</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(Value_{new} = f(Value_A, Value_B)\)</span></p></li>
+<li><p>Boolean (0, 1), Arithmetic (+, -, *, /)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="overlay-tools-in-arcgis">
+<h2><span class="section-number">3.14. </span>Overlay Tools in ArcGIS<a class="headerlink" href="#overlay-tools-in-arcgis" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Different tools keep different kinds of new MUs</p></li>
+<li><p>Intersect, Union, Identity, Erase, Symmetrical Difference, Update</p></li>
+</ul>
+</section>
+<section id="map-arcgis-overlay-tools-to-kinds-of-mus-kept">
+<h2><span class="section-number">3.15. </span>Map ArcGIS Overlay Tools to Kinds of MUs Kept<a class="headerlink" href="#map-arcgis-overlay-tools-to-kinds-of-mus-kept" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>One kind of MUs</p>
+<ul>
+<li><p>A AND B (intersect)</p></li>
+<li><p>A NOT B (erase)</p></li>
+<li><p>B NOT A (erase)</p></li>
+</ul>
+</li>
+<li><p>Two kinds of MUs</p>
+<ul>
+<li><p>A NOT B, A AND B (identity)</p></li>
+<li><p>B NOT A, A AND B (identity)</p></li>
+<li><p>A NOT B and B NOT A (symmetrical difference)</p></li>
+</ul>
+</li>
+<li><p>All kinds of MUs</p>
+<ul>
+<li><p>A AND B, A NOT B, B NOT A (union)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="clip-tool-in-arcgis">
+<h2><span class="section-number">3.16. </span>Clip Tool in ArcGIS<a class="headerlink" href="#clip-tool-in-arcgis" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>What’s the difference between Intersect and Clip tool?</p>
+<ul>
+<li><p>Attributes of the new MUs</p></li>
+<li><p>Clip tool in the Extract toolset—Why?</p></li>
+</ul>
+</li>
+<li><p>How about Erase tool?</p></li>
+</ul>
+</section>
+<section id="other-overlay-tools-in-arcgis">
+<h2><span class="section-number">3.17. </span>Other Overlay Tools in ArcGIS<a class="headerlink" href="#other-overlay-tools-in-arcgis" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Two steps</p>
+<ul>
+<li><p>Choose output MUs for the new map</p></li>
+<li><p>Process/handle related MUs (including attributes)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="overlay-and-attribute-table">
+<h2><span class="section-number">3.18. </span>Overlay and Attribute Table<a class="headerlink" href="#overlay-and-attribute-table" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Number of new MUs (rows)</p>
+<ul>
+<li><p>Vector: Usually increases</p></li>
+<li><p>Raster: Stays the same</p></li>
+</ul>
+</li>
+<li><p>Number of attributes (columns)</p>
+<ul>
+<li><p>Usually increases (attributes from both original maps)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "giswqs/jupyter-book-demo",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="basic_statistics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Basic Statistics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="distance.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Fundamental Spatial Relationship (Distance)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topics">3.1. Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-basic-spatial-relationships">3.2. Fundamental/Basic Spatial Relationships</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#co-locational-relationships">3.3. Co-locational Relationships</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qualitative-locational-topological-relationship">3.4. Qualitative Locational (Topological) Relationship</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-9im">3.5. DE-9IM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-9im-examples">3.6. DE-9IM Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantitative-co-locational-relationship">3.7. Quantitative Co-locational Relationship</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-overlay">3.8. Map Overlay</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometry-of-new-mapping-units">3.9. Geometry of New Mapping Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-relations-between-mus">3.10. Identify Relations between MUs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-overlay-on-raster-maps">3.11. Map Overlay on Raster Maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-overlay-on-vector-maps">3.12. Map Overlay on Vector Maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes-of-the-new-mapping-units">3.13. Attributes of the New Mapping Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay-tools-in-arcgis">3.14. Overlay Tools in ArcGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-arcgis-overlay-tools-to-kinds-of-mus-kept">3.15. Map ArcGIS Overlay Tools to Kinds of MUs Kept</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clip-tool-in-arcgis">3.16. Clip Tool in ArcGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-overlay-tools-in-arcgis">3.17. Other Overlay Tools in ArcGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay-and-attribute-table">3.18. Overlay and Attribute Table</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xingong Li
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

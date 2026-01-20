@@ -1,0 +1,1228 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Fundamentals of Geospatial Data &#8212; Jupyter Book Demo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/geographic_data';</script>
+    <link rel="canonical" href="https://giswqs.github.io/jupyter-book-demo/book/geographic_data.html" />
+    <link rel="icon" href="../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Basic Statistics" href="basic_statistics.html" />
+    <link rel="prev" title="Preface" href="preface.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Jupyter Book Demo - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Jupyter Book Demo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Fundamentals of Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_statistics.html">2. Basic Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colocation.html">3. Fundamental/Basic Spatial Relationships (co-location)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distance.html">4. Fundamental Spatial Relationship (Distance)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">5. Introduction to Open Publishing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">6. How to Write and Publish a Book</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Map Compute Framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">7. Content with notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spatial Analysis with Map Compute Framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown2.html">8. Introduction to Open Publishing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_jupyterbook.html">How to write a book using Jupyter-Book on Github</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/giswqs/jupyter-book-demo/main?urlpath=tree/book/geographic_data.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/giswqs/jupyter-book-demo/blob/main/book/geographic_data.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/edit/main/book/geographic_data.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/issues/new?title=Issue%20on%20page%20%2Fbook/geographic_data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/geographic_data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/book/geographic_data.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fundamentals of Geospatial Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topics">1.1. Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geospatial-geographic-data">1.2. Geospatial/Geographic Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-geospatial-data">1.3. Why Do We Need Geospatial Data?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-and-information">1.4. Life and Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-and-reference-systems">1.5. Measurement and Reference Systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-reference-systems">1.6. Measurement Reference Systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-reference-systems">1.7. Spatial Reference Systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geographic-coordinate-systems-gcs">1.8. Geographic Coordinate Systems (GCS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#horizontal-datum">1.9. (Horizontal) Datum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projected-coordinate-systems-pcs">1.10. Projected Coordinate Systems (PCS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gcs-vs-pcs">1.11. GCS vs. PCS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#height-and-vertical-datum">1.12. Height and Vertical Datum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mappingcreating-geographic-data">1.13. Mapping—Creating Geographic Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-and-measurement-frameworks">1.14. Mapping and Measurement Frameworks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mapping-measurement-frameworks">1.15. Common Mapping Measurement Frameworks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-surface-elevationraster-map">1.16. Mapping Surface Elevation—Raster Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-surface-elevationvector-map">1.17. Mapping Surface Elevation—Vector Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-census-map">1.18. Vector Census Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-and-map">1.19. Function and Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stored-function">1.20. Stored Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-as-stored-function">1.21. Map as Stored Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-map">1.22. Raster Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zone-raster-map">1.23. Zone Raster Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-attribute-value-at-a-location">1.24. Predicting Attribute Value at a Location</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolating-attribute-value">1.25. Interpolating Attribute Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-valued-vector-map">1.26. Multi-valued Vector Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-valued-raster">1.27. Multi-Valued Raster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-map-map-of-spatial-relationships">1.28. Meta-map: Map of Spatial Relationships</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flood-inundation-relations">1.29. Flood Inundation Relations</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fundamentals-of-geospatial-data">
+<h1><span class="section-number">1. </span>Fundamentals of Geospatial Data<a class="headerlink" href="#fundamentals-of-geospatial-data" title="Link to this heading">#</a></h1>
+<section id="topics">
+<h2><span class="section-number">1.1. </span>Topics<a class="headerlink" href="#topics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Geospatial data</p></li>
+<li><p>Measurement and reference systems</p></li>
+<li><p>Mapping and measurement frameworks</p></li>
+<li><p>Map as stored function</p></li>
+<li><p>Types of maps</p></li>
+</ul>
+</section>
+<section id="geospatial-geographic-data">
+<h2><span class="section-number">1.2. </span>Geospatial/Geographic Data<a class="headerlink" href="#geospatial-geographic-data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Data about things on or close to the Earth’s surface</p></li>
+<li><p>Terminology: Spatial, geospatial, or geographic data</p></li>
+<li><p>Scale: Operates at an Earth or planet scale</p>
+<ul>
+<li><p>Spatial location</p></li>
+<li><p>Spatial &gt; geospatial</p></li>
+<li><p>Geospatial = geographical</p></li>
+</ul>
+</li>
+<li><p>Three components</p>
+<ul>
+<li><p>Attribute (what)</p></li>
+<li><p>Location (where)</p></li>
+<li><p>Time (when)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="why-do-we-need-geospatial-data">
+<h2><span class="section-number">1.3. </span>Why Do We Need Geospatial Data?<a class="headerlink" href="#why-do-we-need-geospatial-data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Life is spatial</p>
+<ul>
+<li><p>Life itself (matter) takes up space</p></li>
+<li><p>It distinguishes itself from its environment</p></li>
+<li><p>It interacts with the environment</p></li>
+<li><p>It lives in space</p></li>
+</ul>
+</li>
+<li><p>Spatial intelligence</p>
+<ul>
+<li><p>One of Howard Gardner’s multiple intelligences</p></li>
+<li><p>Involves immediate sensory perception</p></li>
+</ul>
+</li>
+<li><p>Geographical intelligence</p>
+<ul>
+<li><p>Insight beyond the line-of-sight</p></li>
+<li><p>Insight beyond sensory perception</p></li>
+</ul>
+</li>
+</ul>
+<p>[Image of Howard Gardner’s multiple intelligences theory]</p>
+</section>
+<section id="life-and-information">
+<h2><span class="section-number">1.4. </span>Life and Information<a class="headerlink" href="#life-and-information" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>What is life?</p>
+<ul>
+<li><p>The basis of life is information processing</p></li>
+<li><p>Life collects, stores, and uses information</p></li>
+<li><p>Applies to biological and artificial life, organizations, and the economy</p></li>
+</ul>
+</li>
+<li><p>What is information?</p>
+<ul>
+<li><p>Something that allows an observer to make predictions about the state of another system that are better than chance</p></li>
+</ul>
+</li>
+<li><p>Information vs. Data</p>
+<ul>
+<li><p>Data becomes information when it enables better-than-chance predictions about another system</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="measurement-and-reference-systems">
+<h2><span class="section-number">1.5. </span>Measurement and Reference Systems<a class="headerlink" href="#measurement-and-reference-systems" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Measurement</p>
+<ul>
+<li><p>Classical physicist perspective: Provides a numerical relationship between a standard object and the object being measured</p></li>
+<li><p>Representationalists perspective: Assignment of numbers to objects according to certain rules</p></li>
+<li><p>Useful data includes both the numbers and the standard objects or rules used</p></li>
+</ul>
+</li>
+<li><p>Measurement reference systems</p>
+<ul>
+<li><p>A set of rules for measurement or standard objects</p></li>
+<li><p>Provides a means to compare a particular number to others measured under the same set of rules</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="measurement-reference-systems">
+<h2><span class="section-number">1.6. </span>Measurement Reference Systems<a class="headerlink" href="#measurement-reference-systems" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Reference systems exist for attribute, time, and space</p></li>
+<li><p>Temporal reference systems</p>
+<ul>
+<li><p>Local vs. global time</p></li>
+<li><p>Gregorian vs. lunar calendars</p></li>
+</ul>
+</li>
+<li><p>Attribute reference systems</p>
+<ul>
+<li><p>Units (standard objects)</p></li>
+<li><p>Levels of measurement: Nominal, Ordinal, Interval, and Ratio</p></li>
+</ul>
+</li>
+<li><p>Running race example</p>
+<ul>
+<li><p>A number to wear (Nominal)</p></li>
+<li><p>The order of finishing the race (Ordinal)</p></li>
+<li><p>Arrival time (Interval)</p></li>
+<li><p>Elapsed running time (Ratio)</p></li>
+</ul>
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Su</p></th>
+<th class="head text-left"><p>Mo</p></th>
+<th class="head text-left"><p>Tu</p></th>
+<th class="head text-left"><p>We</p></th>
+<th class="head text-left"><p>Th</p></th>
+<th class="head text-left"><p>Fr</p></th>
+<th class="head text-left"><p>Sa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>31</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>2</p></td>
+<td class="text-left"><p>3</p></td>
+<td class="text-left"><p>4</p></td>
+<td class="text-left"><p>5</p></td>
+<td class="text-left"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>7</p></td>
+<td class="text-left"><p>8</p></td>
+<td class="text-left"><p>9</p></td>
+<td class="text-left"><p>10</p></td>
+<td class="text-left"><p>11</p></td>
+<td class="text-left"><p>12</p></td>
+<td class="text-left"><p>13</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>14</p></td>
+<td class="text-left"><p>15</p></td>
+<td class="text-left"><p>16</p></td>
+<td class="text-left"><p>17</p></td>
+<td class="text-left"><p>18</p></td>
+<td class="text-left"><p>19</p></td>
+<td class="text-left"><p>20</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>21</p></td>
+<td class="text-left"><p>22</p></td>
+<td class="text-left"><p>23</p></td>
+<td class="text-left"><p>24</p></td>
+<td class="text-left"><p>25</p></td>
+<td class="text-left"><p>26</p></td>
+<td class="text-left"><p>27</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>28</p></td>
+<td class="text-left"><p>29</p></td>
+<td class="text-left"><p>30</p></td>
+<td class="text-left"><p>31</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>2</p></td>
+<td class="text-left"><p>3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="spatial-reference-systems">
+<h2><span class="section-number">1.7. </span>Spatial Reference Systems<a class="headerlink" href="#spatial-reference-systems" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Location distinguishes geospatial data from other types of data</p>
+<ul>
+<li><p>Specifying location on the Earth’s surface is essential</p></li>
+</ul>
+</li>
+<li><p>Geospatial coordinate systems are designed to:</p>
+<ul>
+<li><p>Define locations on or close to the Earth’s irregular curved surface</p></li>
+<li><p>Ensure each location is uniquely represented</p></li>
+<li><p>Allow calculations of relationships such as distance and direction</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="geographic-coordinate-systems-gcs">
+<h2><span class="section-number">1.8. </span>Geographic Coordinate Systems (GCS)<a class="headerlink" href="#geographic-coordinate-systems-gcs" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Based on a spheroid model of the Earth</p></li>
+<li><p>Uses two angular measurements (latitude and longitude) to specify a location</p></li>
+<li><p>Components of a GCS:</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Geographic Coordinate System</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Datum (Sphere or Ellipsoid)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Unit of Measure (DMS, DD, or Radian)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Prime Meridian</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>[Image of geographic coordinate system latitude and longitude]</p>
+</section>
+<section id="horizontal-datum">
+<h2><span class="section-number">1.9. </span>(Horizontal) Datum<a class="headerlink" href="#horizontal-datum" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A datum specifies a sphere or ellipsoid used to approximate the Earth’s shape and size</p></li>
+<li><p>It defines how that model is aligned with the Earth</p></li>
+<li><p>Latitude and longitude are defined based on specific datums</p></li>
+<li><p>The same location may have different coordinates depending on the datum used</p>
+<ul>
+<li><p>Earth-centered (WGS84) datum</p></li>
+<li><p>Local (NAD27) datum</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="projected-coordinate-systems-pcs">
+<h2><span class="section-number">1.10. </span>Projected Coordinate Systems (PCS)<a class="headerlink" href="#projected-coordinate-systems-pcs" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A PCS consists of:</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Projected Coordinate System</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>A linear unit of measure (usually meters or feet)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>A map projection with specific parameters</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>An underlying Geographic Coordinate System</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="gcs-vs-pcs">
+<h2><span class="section-number">1.11. </span>GCS vs. PCS<a class="headerlink" href="#gcs-vs-pcs" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>PCS is suitable for small areas</p></li>
+<li><p>PCS always contains some form of distortion</p></li>
+<li><p>GCS calculations for distance and area are more accurate but more complex</p>
+<ul>
+<li><p>Uses spherical geometry</p></li>
+</ul>
+</li>
+<li><p>Most GIS analytical functions are implemented based on PCS</p></li>
+<li><p>Use PCS primarily for printing or display on flat media</p></li>
+</ul>
+</section>
+<section id="height-and-vertical-datum">
+<h2><span class="section-number">1.12. </span>Height and Vertical Datum<a class="headerlink" href="#height-and-vertical-datum" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The vertical datum is the zero surface to which elevation refers</p></li>
+<li><p>Geoids (equipotential surfaces) are standard zero surfaces</p></li>
+<li><p>Ellipsoids can also be used, such as in GPS readings</p></li>
+<li><p>The same location may have different elevation values based on different vertical datums</p></li>
+</ul>
+</section>
+<section id="mappingcreating-geographic-data">
+<h2><span class="section-number">1.13. </span>Mapping—Creating Geographic Data<a class="headerlink" href="#mappingcreating-geographic-data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The process involves turning things on or near the Earth’s surface into data</p>
+<ul>
+<li><p>Representing reality as numbers in a computer</p></li>
+</ul>
+</li>
+<li><p>What is measured:</p>
+<ul>
+<li><p>Objects and fields on or close to the Earth’s surface</p></li>
+<li><p>Location, attribute, and time components</p></li>
+</ul>
+</li>
+<li><p>Considerations and constraints:</p>
+<ul>
+<li><p>Purpose and resources/cost</p></li>
+<li><p>Resolution and precision</p></li>
+<li><p>Limitations of finite computing systems</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mapping-and-measurement-frameworks">
+<h2><span class="section-number">1.14. </span>Mapping and Measurement Frameworks<a class="headerlink" href="#mapping-and-measurement-frameworks" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Geospatial data consists of location, attribute, and time components</p>
+<ul>
+<li><p>All three components cannot be measured simultaneously</p></li>
+</ul>
+</li>
+<li><p>Measurement frameworks provide rules for ignoring or controlling some components to measure one</p>
+<ul>
+<li><p>One component must be fixed (irrelevant)</p></li>
+<li><p>Another component serves as control (imposes discrete divisions)</p></li>
+</ul>
+</li>
+<li><p>Discrete divisions constrain the resolution and accuracy of the measurement</p></li>
+</ul>
+</section>
+<section id="common-mapping-measurement-frameworks">
+<h2><span class="section-number">1.15. </span>Common Mapping Measurement Frameworks<a class="headerlink" href="#common-mapping-measurement-frameworks" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Time is fixed: Measured at a specific point in time or during a period</p></li>
+<li><p>Location as control: Space is divided into cells, polygons, or administrative boundaries</p>
+<ul>
+<li><p>Attributes are then measured for these divisions</p></li>
+</ul>
+</li>
+<li><p>Attribute as control: Specific attributes (e.g., land cover types or elevations) are chosen</p>
+<ul>
+<li><p>Locations are then measured for these attributes</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mapping-surface-elevationraster-map">
+<h2><span class="section-number">1.16. </span>Mapping Surface Elevation—Raster Map<a class="headerlink" href="#mapping-surface-elevationraster-map" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Location serves as the control</p>
+<ul>
+<li><p>Space is systematically divided into cells</p></li>
+</ul>
+</li>
+<li><p>Attributes are measured at each cell</p>
+<ul>
+<li><p>Rules like min, max, or mean may be applied</p></li>
+</ul>
+</li>
+<li><p>Cell values are typically stored as a matrix</p></li>
+</ul>
+</section>
+<section id="mapping-surface-elevationvector-map">
+<h2><span class="section-number">1.17. </span>Mapping Surface Elevation—Vector Map<a class="headerlink" href="#mapping-surface-elevationvector-map" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Attribute serves as the control</p>
+<ul>
+<li><p>Focuses on discrete elevations (e.g., every 100m)</p></li>
+</ul>
+</li>
+<li><p>Locations are measured for each elevation (e.g., contour lines)</p></li>
+<li><p>Location-value pairs are stored as rows in a table</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>ID</p></th>
+<th class="head text-left"><p>Location/Geometry</p></th>
+<th class="head text-left"><p>Elevation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>1</p></td>
+<td class="text-left"><p>(x1,y1), (x2,y2) … (xn, yn)</p></td>
+<td class="text-left"><p>100</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>2</p></td>
+<td class="text-left"><p>(x1,y1), (x2,y2) … (xm, ym)</p></td>
+<td class="text-left"><p>200</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>10</p></td>
+<td class="text-left"><p>(x1,y1), (x2,y2) … (xk, yk)</p></td>
+<td class="text-left"><p>1000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="vector-census-map">
+<h2><span class="section-number">1.18. </span>Vector Census Map<a class="headerlink" href="#vector-census-map" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Location serves as the control</p>
+<ul>
+<li><p>Uses census blocks or aggregated boundaries</p></li>
+</ul>
+</li>
+<li><p>Population is counted based on set rules</p></li>
+</ul>
+</section>
+<section id="function-and-map">
+<h2><span class="section-number">1.19. </span>Function and Map<a class="headerlink" href="#function-and-map" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A function associates each element x of a domain to a single element y of a codomain</p></li>
+<li><p>Analogy for maps: Location represents the domain, and the measured attribute represents the codomain</p></li>
+</ul>
+</section>
+<section id="stored-function">
+<h2><span class="section-number">1.20. </span>Stored Function<a class="headerlink" href="#stored-function" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Relations are explicitly stored when they cannot be represented mathematically</p></li>
+<li><p>A stored function acts as a lookup table</p></li>
+<li><p>Locations must be discretized (mapping units) due to finite computing power</p></li>
+</ul>
+</section>
+<section id="map-as-stored-function">
+<h2><span class="section-number">1.21. </span>Map as Stored Function<a class="headerlink" href="#map-as-stored-function" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Relation between location and attribute: <span class="math notranslate nohighlight">\(Attribute = f(location)\)</span></p></li>
+<li><p>Domain: Location on Earth</p></li>
+<li><p>Codomain: Any measured attributes/variables</p></li>
+<li><p>Map is a stored function because location-value relations usually lack mathematical formulas</p></li>
+</ul>
+</section>
+<section id="raster-map">
+<h2><span class="section-number">1.22. </span>Raster Map<a class="headerlink" href="#raster-map" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Matrix serves as a stored function</p>
+<ul>
+<li><p>Each cell is located by its row and column</p></li>
+</ul>
+</li>
+<li><p>Each cell represents a location-value relation</p></li>
+<li><p>Usually, the upper-left corner cell is georeferenced; other locations are derived</p></li>
+</ul>
+</section>
+<section id="zone-raster-map">
+<h2><span class="section-number">1.23. </span>Zone Raster Map<a class="headerlink" href="#zone-raster-map" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Cells with the same value form a “zone”</p></li>
+<li><p>The zone serves as the mapping unit location</p></li>
+<li><p>Typically includes an attribute table with counts/histograms</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Zone ID</p></th>
+<th class="head text-left"><p>Count</p></th>
+<th class="head text-left"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>0</p></td>
+<td class="text-left"><p>50</p></td>
+<td class="text-left"><p>200</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>1</p></td>
+<td class="text-left"><p>50</p></td>
+<td class="text-left"><p>325.6</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="predicting-attribute-value-at-a-location">
+<h2><span class="section-number">1.24. </span>Predicting Attribute Value at a Location<a class="headerlink" href="#predicting-attribute-value-at-a-location" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Map as a function: Prediction is a fundamental capability (<span class="math notranslate nohighlight">\(v = m(l)\)</span>)</p></li>
+<li><p>Estimation/Interpolation is necessary when the target mapping unit differs from stored units</p></li>
+</ul>
+</section>
+<section id="interpolating-attribute-value">
+<h2><span class="section-number">1.25. </span>Interpolating Attribute Value<a class="headerlink" href="#interpolating-attribute-value" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Land cover interpolation: Uses majority types for target polygons</p></li>
+<li><p>Population interpolation: Uses areal interpolation</p></li>
+<li><p>Attribute types:</p>
+<ul>
+<li><p>Intensive: Magnitude independent of size (e.g., density)</p></li>
+<li><p>Extensive: Magnitude is additive (e.g., mass, population)</p></li>
+</ul>
+</li>
+<li><p>Spatially intensive: Value is the same everywhere within a mapping unit</p></li>
+<li><p>Spatially extensive: Value changes if the mapping unit is modified</p></li>
+</ul>
+</section>
+<section id="multi-valued-vector-map">
+<h2><span class="section-number">1.26. </span>Multi-valued Vector Map<a class="headerlink" href="#multi-valued-vector-map" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Results from combining multiple single-valued maps (e.g., Soil + Land Cover)</p></li>
+<li><p>Each mapping unit represents a set of homogeneous attributes</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Map</p></th>
+<th class="head text-left"><p>Attributes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Soil</p></td>
+<td class="text-left"><p>A, B</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Land cover</p></td>
+<td class="text-left"><p>C, D</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Combined</p></td>
+<td class="text-left"><p>(A, C), (A, D), (B, C), (B, D)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="multi-valued-raster">
+<h2><span class="section-number">1.27. </span>Multi-Valued Raster<a class="headerlink" href="#multi-valued-raster" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Each cell contains a set of attribute values (e.g., multi-band remote sensing)</p></li>
+<li><p>Storage methods: Band sequential (BSQ), Band interleaved by line (BIL), and Band interleaved by pixel (BIP)</p></li>
+</ul>
+</section>
+<section id="meta-map-map-of-spatial-relationships">
+<h2><span class="section-number">1.28. </span>Meta-map: Map of Spatial Relationships<a class="headerlink" href="#meta-map-map-of-spatial-relationships" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Spatial relationship involves the exchange of matter, energy, and information between locations</p>
+<ul>
+<li><p>Examples include watersheds and viewsheds</p></li>
+</ul>
+</li>
+<li><p>Types of map relations:</p>
+<ul>
+<li><p>Single-valued: {Location, value}</p></li>
+<li><p>Multi-valued: {Location, {values}}</p></li>
+<li><p>Meta-map: {Location, {(location, {values})}} (a map of maps)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="flood-inundation-relations">
+<h2><span class="section-number">1.29. </span>Flood Inundation Relations<a class="headerlink" href="#flood-inundation-relations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Floodplain pixels (FPP) can be flooded by flood source pixels (FSP) through backfill and spillover</p></li>
+<li><p>Depth to flood (DTF): The minimum depth at an FSP required to flood a specific FPP</p></li>
+<li><p>The FLDPLN model identifies these relations and DTFs through an iterative process</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "giswqs/jupyter-book-demo",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="preface.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Preface</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="basic_statistics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Basic Statistics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topics">1.1. Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geospatial-geographic-data">1.2. Geospatial/Geographic Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-geospatial-data">1.3. Why Do We Need Geospatial Data?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-and-information">1.4. Life and Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-and-reference-systems">1.5. Measurement and Reference Systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-reference-systems">1.6. Measurement Reference Systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-reference-systems">1.7. Spatial Reference Systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geographic-coordinate-systems-gcs">1.8. Geographic Coordinate Systems (GCS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#horizontal-datum">1.9. (Horizontal) Datum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projected-coordinate-systems-pcs">1.10. Projected Coordinate Systems (PCS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gcs-vs-pcs">1.11. GCS vs. PCS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#height-and-vertical-datum">1.12. Height and Vertical Datum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mappingcreating-geographic-data">1.13. Mapping—Creating Geographic Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-and-measurement-frameworks">1.14. Mapping and Measurement Frameworks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mapping-measurement-frameworks">1.15. Common Mapping Measurement Frameworks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-surface-elevationraster-map">1.16. Mapping Surface Elevation—Raster Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-surface-elevationvector-map">1.17. Mapping Surface Elevation—Vector Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-census-map">1.18. Vector Census Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-and-map">1.19. Function and Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stored-function">1.20. Stored Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-as-stored-function">1.21. Map as Stored Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-map">1.22. Raster Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zone-raster-map">1.23. Zone Raster Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-attribute-value-at-a-location">1.24. Predicting Attribute Value at a Location</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolating-attribute-value">1.25. Interpolating Attribute Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-valued-vector-map">1.26. Multi-valued Vector Map</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-valued-raster">1.27. Multi-Valued Raster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-map-map-of-spatial-relationships">1.28. Meta-map: Map of Spatial Relationships</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flood-inundation-relations">1.29. Flood Inundation Relations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xingong Li
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

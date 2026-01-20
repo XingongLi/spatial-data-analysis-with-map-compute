@@ -1,0 +1,971 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Basic Statistics &#8212; Jupyter Book Demo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/basic_statistics';</script>
+    <link rel="canonical" href="https://giswqs.github.io/jupyter-book-demo/book/basic_statistics.html" />
+    <link rel="icon" href="../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Fundamental/Basic Spatial Relationships (co-location)" href="colocation.html" />
+    <link rel="prev" title="1. Fundamentals of Geospatial Data" href="geographic_data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Jupyter Book Demo - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Jupyter Book Demo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="geographic_data.html">1. Fundamentals of Geospatial Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Basic Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colocation.html">3. Fundamental/Basic Spatial Relationships (co-location)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distance.html">4. Fundamental Spatial Relationship (Distance)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">5. Introduction to Open Publishing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">6. How to Write and Publish a Book</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Map Compute Framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">7. Content with notebooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spatial Analysis with Map Compute Framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown2.html">8. Introduction to Open Publishing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_jupyterbook.html">How to write a book using Jupyter-Book on Github</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/giswqs/jupyter-book-demo/main?urlpath=tree/book/basic_statistics.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/giswqs/jupyter-book-demo/blob/main/book/basic_statistics.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/edit/main/book/basic_statistics.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/issues/new?title=Issue%20on%20page%20%2Fbook/basic_statistics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/basic_statistics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/book/basic_statistics.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Basic Statistics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topics">2.1. Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics-on-attributes-chp-3">2.2. Statistics on Attributes (Chp. 3)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-statistics-for-attributes">2.3. Descriptive Statistics for Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-statistics-correlation-coefficient">2.4. Multivariate statistics– Correlation Coefficient</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-statistics-linear-regression">2.5. Multivariate statistics–Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geospatial-statistics-on-attributes">2.6. Geospatial Statistics on Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-statistics-for-locations-chp-7-2">2.7. Descriptive Statistics for Locations (Chp. 7.2)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-center">2.8. Mean Center</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-feature-and-median-center">2.9. Central Feature and Median Center</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-mean-center">2.10. Weighted Mean Center</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-distance">2.11. Standard Distance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-deviation-ellipse">2.12. Standard Deviation Ellipse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-deviational-ellipse-example">2.13. Standard Deviational Ellipse Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-1descriptive-spatial-statistics">2.14. Lab #1—Descriptive Spatial Statistics</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-statistics">
+<h1><span class="section-number">2. </span>Basic Statistics<a class="headerlink" href="#basic-statistics" title="Link to this heading">#</a></h1>
+<section id="topics">
+<h2><span class="section-number">2.1. </span>Topics<a class="headerlink" href="#topics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Basic statistics on attributes</p></li>
+<li><p>Basic statistics on location</p>
+<ul>
+<li><p>Readings: Lloyd Chp. 3, 4</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="statistics-on-attributes-chp-3">
+<h2><span class="section-number">2.2. </span>Statistics on Attributes (Chp. 3)<a class="headerlink" href="#statistics-on-attributes-chp-3" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Statistics on attributes</p>
+<ul>
+<li><p>Univariate statistics</p></li>
+<li><p>Multivariate statistics</p></li>
+<li><p>Inferential statistics</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="descriptive-statistics-for-attributes">
+<h2><span class="section-number">2.3. </span>Descriptive Statistics for Attributes<a class="headerlink" href="#descriptive-statistics-for-attributes" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Measures of central tendency</p>
+<ul>
+<li><p>Mean, median, mode</p></li>
+</ul>
+</li>
+<li><p>Measures of dispersion</p>
+<ul>
+<li><p>Range, minimum, maximum</p></li>
+<li><p>Variance and standard deviation</p>
+<ul>
+<li><p>The extent to which values vary from the mean</p></li>
+</ul>
+</li>
+<li><p>Coefficient of variation (CV)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="multivariate-statistics-correlation-coefficient">
+<h2><span class="section-number">2.4. </span>Multivariate statistics– Correlation Coefficient<a class="headerlink" href="#multivariate-statistics-correlation-coefficient" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>How two attributes are related to each other</p></li>
+<li><p>Correlation Coefficient</p>
+<ul>
+<li><p>A (normalized) measurement of the covariance of two variables</p></li>
+<li><p>Has a value between -1 and 1</p></li>
+<li><p>Formula: <span class="math notranslate nohighlight">\(r=\frac{\sum_{i=1}^{n}(y_{i}-\overline{y})(z_{i}-\overline{z})}{\sqrt{\sum_{i=1}^{n}(y_{i}-\overline{y})^{2}}\sqrt{\sum_{i=1}^{n}(z_{i}-\overline{z})^{2}}}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Variable 1 (y)</p></th>
+<th class="head text-left"><p>Variable 2 (zᵢ)</p></th>
+<th class="head text-left"><p>(yᵢ-ȳ)</p></th>
+<th class="head text-left"><p>(zᵢ-ž)</p></th>
+<th class="head text-left"><p>(yᵢ-ȳ)×(zᵢ-ž)</p></th>
+<th class="head text-left"><p>(yᵢ-ȳ)²</p></th>
+<th class="head text-left"><p>(zⱼ-ž)²</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>12</p></td>
+<td class="text-left"><p>6</p></td>
+<td class="text-left"><p>-20.11</p></td>
+<td class="text-left"><p>-27.00</p></td>
+<td class="text-left"><p>543.00</p></td>
+<td class="text-left"><p>404.46</p></td>
+<td class="text-left"><p>729.00</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>34</p></td>
+<td class="text-left"><p>52</p></td>
+<td class="text-left"><p>1.89</p></td>
+<td class="text-left"><p>19.00</p></td>
+<td class="text-left"><p>35.89</p></td>
+<td class="text-left"><p>3.57</p></td>
+<td class="text-left"><p>361.00</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>32</p></td>
+<td class="text-left"><p>41</p></td>
+<td class="text-left"><p>-0.11</p></td>
+<td class="text-left"><p>8.00</p></td>
+<td class="text-left"><p>-0.89</p></td>
+<td class="text-left"><p>0.01</p></td>
+<td class="text-left"><p>64.00</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>12</p></td>
+<td class="text-left"><p>25</p></td>
+<td class="text-left"><p>-20.11</p></td>
+<td class="text-left"><p>-8.00</p></td>
+<td class="text-left"><p>160.89</p></td>
+<td class="text-left"><p>404.46</p></td>
+<td class="text-left"><p>64.00</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>11</p></td>
+<td class="text-left"><p>22</p></td>
+<td class="text-left"><p>-21.11</p></td>
+<td class="text-left"><p>-11.00</p></td>
+<td class="text-left"><p>232.22</p></td>
+<td class="text-left"><p>445.68</p></td>
+<td class="text-left"><p>121.00</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>14</p></td>
+<td class="text-left"><p>9</p></td>
+<td class="text-left"><p>-18.11</p></td>
+<td class="text-left"><p>-24.00</p></td>
+<td class="text-left"><p>434.67</p></td>
+<td class="text-left"><p>328.01</p></td>
+<td class="text-left"><p>576.00</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>56</p></td>
+<td class="text-left"><p>43</p></td>
+<td class="text-left"><p>23.89</p></td>
+<td class="text-left"><p>10.00</p></td>
+<td class="text-left"><p>238.89</p></td>
+<td class="text-left"><p>570.68</p></td>
+<td class="text-left"><p>100.00</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>75</p></td>
+<td class="text-left"><p>67</p></td>
+<td class="text-left"><p>42.89</p></td>
+<td class="text-left"><p>34.00</p></td>
+<td class="text-left"><p>1458.22</p></td>
+<td class="text-left"><p>1839.46</p></td>
+<td class="text-left"><p>1156.00</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>43</p></td>
+<td class="text-left"><p>32</p></td>
+<td class="text-left"><p>10.89</p></td>
+<td class="text-left"><p>-1.00</p></td>
+<td class="text-left"><p>-10.89</p></td>
+<td class="text-left"><p>118.57</p></td>
+<td class="text-left"><p>1.00</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>SUM</strong></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p><strong>3092</strong></p></td>
+<td class="text-left"><p><strong>4114.89</strong></p></td>
+<td class="text-left"><p><strong>3172.00</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>Calculation:</p>
+<ul>
+<li><p>Numerator: 3092</p></li>
+<li><p>Denominator: <span class="math notranslate nohighlight">\(\sqrt{4114.89} \times \sqrt{3172.00} = 64.1474 \times 56.3205 = 3612.8136\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r = 3092 / 3612.8136 = 0.8558\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="multivariate-statistics-linear-regression">
+<h2><span class="section-number">2.5. </span>Multivariate statistics–Linear Regression<a class="headerlink" href="#multivariate-statistics-linear-regression" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Relationship between dependent and independent variable(s)</p></li>
+<li><p>Ordinary least square regression</p>
+<ul>
+<li><p>Least square approach</p></li>
+<li><p>Minimize the sum of squared errors (residuals)</p></li>
+<li><p>Coefficients are calculated by solving a set of equations</p></li>
+<li><p>Equation: <span class="math notranslate nohighlight">\(z = a * y + b\)</span></p>
+<ul>
+<li><p>a — slope</p></li>
+<li><p>b — intercept</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Example: <span class="math notranslate nohighlight">\(z = 8.8711 + 0.7514y\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(r^2 = 0.7325\)</span></p></li>
+</ul>
+</li>
+<li><p>Goodness of fit</p>
+<ul>
+<li><p>Coefficient of determination</p></li>
+<li><p>Percent of variation in z explained by y</p></li>
+<li><p><span class="math notranslate nohighlight">\(r^2 = (\text{correlation coefficient})^2\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="geospatial-statistics-on-attributes">
+<h2><span class="section-number">2.6. </span>Geospatial Statistics on Attributes<a class="headerlink" href="#geospatial-statistics-on-attributes" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Conventional correlation and linear regression</p>
+<ul>
+<li><p>Two variables measured on the same subjects</p></li>
+<li><p>Variables related by subjects</p></li>
+</ul>
+</li>
+<li><p>Geospatial correlation and linear regression</p>
+<ul>
+<li><p>Variables related by location (and time)</p></li>
+<li><p>Two variables at the same location</p>
+<ul>
+<li><p>Example: temperature ~ elevation regression</p></li>
+</ul>
+</li>
+<li><p>Geographically weighted regression</p>
+<ul>
+<li><p>Two variables nearby a location</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Spatial auto-correlation</p>
+<ul>
+<li><p>How a variable is related to itself in space (and time)</p></li>
+<li><p>Same attribute at two different locations</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="descriptive-statistics-for-locations-chp-7-2">
+<h2><span class="section-number">2.7. </span>Descriptive Statistics for Locations (Chp. 7.2)<a class="headerlink" href="#descriptive-statistics-for-locations-chp-7-2" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Where is the center of a geographic distribution</p></li>
+<li><p>How features are distributed around their center</p></li>
+<li><p>Why measure geographic distributions?</p>
+<ul>
+<li><p>Know the general location of geographic features</p></li>
+<li><p>Compare the distributions of different features/phenomena</p></li>
+<li><p>Track changes of distribution in time</p></li>
+</ul>
+</li>
+<li><p>Modified from one dimension (attribute) to two dimensions</p></li>
+</ul>
+</section>
+<section id="mean-center">
+<h2><span class="section-number">2.8. </span>Mean Center<a class="headerlink" href="#mean-center" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The mean of X and Y coordinates</p></li>
+<li><p>Minimizing the sum of the squares of the distance to each point</p></li>
+<li><p>Center of mass/gravity</p></li>
+<li><p>Sensitive to extreme points</p></li>
+<li><p>Formula: <span class="math notranslate nohighlight">\(\overline{X} = \sum X_i / N, \overline{Y} = \sum Y_i / N\)</span></p></li>
+</ul>
+</section>
+<section id="central-feature-and-median-center">
+<h2><span class="section-number">2.9. </span>Central Feature and Median Center<a class="headerlink" href="#central-feature-and-median-center" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Central feature</p>
+<ul>
+<li><p>The most centrally located feature</p></li>
+<li><p>Shortest total distance from all the other features</p></li>
+</ul>
+</li>
+<li><p>Median center</p>
+<ul>
+<li><p>Minimizing the sum of the distances to each point</p></li>
+<li><p>Less influenced by outliers</p></li>
+<li><p>No simple formula (iterative process)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="weighted-mean-center">
+<h2><span class="section-number">2.10. </span>Weighted Mean Center<a class="headerlink" href="#weighted-mean-center" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Center influenced by the attribute at a location</p></li>
+<li><p>Center of gravity</p></li>
+<li><p>Formula: <span class="math notranslate nohighlight">\(\overline{X}_w = \frac{\sum W_i X_i}{\sum W_i}, \overline{Y}_w = \frac{\sum W_i Y_i}{\sum W_i}\)</span></p></li>
+<li><p>Example:</p>
+<ul>
+<li><p>Points: (5, 0), (2, 4), (5, 8) with weights 2, 4, 4</p></li>
+<li><p>Mean center (4, 4)</p></li>
+<li><p>Weighted mean center (4.4, 4)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="standard-distance">
+<h2><span class="section-number">2.11. </span>Standard Distance<a class="headerlink" href="#standard-distance" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>How feature locations deviate from their mean center</p></li>
+<li><p>Average distance to mean center</p></li>
+<li><p>Two dimensional equivalent of standard deviation</p></li>
+<li><p>Compactness (dispersed vs. clustered)</p></li>
+<li><p>Formula: <span class="math notranslate nohighlight">\(S_{xy} = \sqrt{\frac{\sum (X_i - \overline{X})^2 + \sum (Y_i - \overline{Y})^2}{N}}\)</span></p></li>
+</ul>
+</section>
+<section id="standard-deviation-ellipse">
+<h2><span class="section-number">2.12. </span>Standard Deviation Ellipse<a class="headerlink" href="#standard-deviation-ellipse" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Standard distance does not show directional trend (anisotropy)</p></li>
+<li><p>The standard deviation ellipse gives dispersion and direction measure</p></li>
+</ul>
+</section>
+<section id="standard-deviational-ellipse-example">
+<h2><span class="section-number">2.13. </span>Standard Deviational Ellipse Example<a class="headerlink" href="#standard-deviational-ellipse-example" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Example: Monthly mean centers of tornado touchdown locations from 1950 to 2004</p></li>
+</ul>
+</section>
+<section id="lab-1descriptive-spatial-statistics">
+<h2><span class="section-number">2.14. </span>Lab #1—Descriptive Spatial Statistics<a class="headerlink" href="#lab-1descriptive-spatial-statistics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Lab #1—Descriptive Spatial Statistics</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "giswqs/jupyter-book-demo",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="geographic_data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Fundamentals of Geospatial Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="colocation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Fundamental/Basic Spatial Relationships (co-location)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topics">2.1. Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics-on-attributes-chp-3">2.2. Statistics on Attributes (Chp. 3)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-statistics-for-attributes">2.3. Descriptive Statistics for Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-statistics-correlation-coefficient">2.4. Multivariate statistics– Correlation Coefficient</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-statistics-linear-regression">2.5. Multivariate statistics–Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geospatial-statistics-on-attributes">2.6. Geospatial Statistics on Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-statistics-for-locations-chp-7-2">2.7. Descriptive Statistics for Locations (Chp. 7.2)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-center">2.8. Mean Center</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-feature-and-median-center">2.9. Central Feature and Median Center</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-mean-center">2.10. Weighted Mean Center</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-distance">2.11. Standard Distance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-deviation-ellipse">2.12. Standard Deviation Ellipse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-deviational-ellipse-example">2.13. Standard Deviational Ellipse Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-1descriptive-spatial-statistics">2.14. Lab #1—Descriptive Spatial Statistics</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xingong Li
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
