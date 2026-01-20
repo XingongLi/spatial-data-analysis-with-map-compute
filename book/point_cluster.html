@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>8. Introduction to Open Publishing &#8212; Jupyter Book Demo</title>
+    <title>13. Point Pattern Analysis: Clusters &#8212; Jupyter Book Demo</title>
   
   
   
@@ -57,13 +57,15 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'book/markdown2';</script>
-    <link rel="canonical" href="https://giswqs.github.io/jupyter-book-demo/book/markdown2.html" />
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/point_cluster';</script>
+    <link rel="canonical" href="https://giswqs.github.io/jupyter-book-demo/book/point_cluster.html" />
     <link rel="icon" href="../_static/fav.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Bibliography" href="bibliography.html" />
-    <link rel="prev" title="7. Content with notebooks" href="notebooks.html" />
+    <link rel="next" title="14. Spatial Autocorrelation" href="spatial_autocorrelation.html" />
+    <link rel="prev" title="12. Point Pattern Analysis: Randomness" href="point_randomness.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -179,20 +181,26 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="geographic_data.html">1. Fundamentals of Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geographic_data.html">1. Geospatial Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_statistics.html">2. Basic Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="colocation.html">3. Fundamental/Basic Spatial Relationships (co-location)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="distance.html">4. Fundamental Spatial Relationship (Distance)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">5. Introduction to Open Publishing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">6. How to Write and Publish a Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colocation.html">3. Spatial Relations: Co-location</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distance.html">4. Spatial Relationship: Distance</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Map Compute Framework</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">7. Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_compute.html">5. The Map Compute Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local_ops.html">6. Local Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="focal_ops.html">7. Focal Operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zones.html">8. Zone as Mapping Unit and Neighborhood</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global_ops_and_set_mu.html">9. Global Operations, Effective Neighborhoods, and Analysis MUs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Spatial Analysis with Map Compute Framework</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Introduction to Open Publishing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nbr_ops_connectivity_distance.html">10. Neighborhood Relation Operations, Connectivity, and Distance Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="suitability.html">11. Multi-criteria Suitability Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="point_randomness.html">12. Point Pattern Analysis: Randomness</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Point Pattern Analysis: Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spatial_autocorrelation.html">14. Spatial Autocorrelation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
@@ -244,6 +252,73 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/giswqs/jupyter-book-demo/main?urlpath=tree/book/point_cluster.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/giswqs/jupyter-book-demo/blob/main/book/point_cluster.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -269,7 +344,7 @@
       
       
       
-      <li><a href="https://github.com/giswqs/jupyter-book-demo/edit/main/book/markdown2.md" target="_blank"
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/edit/main/book/point_cluster.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -286,7 +361,7 @@
       
       
       
-      <li><a href="https://github.com/giswqs/jupyter-book-demo/issues/new?title=Issue%20on%20page%20%2Fbook/markdown2.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/issues/new?title=Issue%20on%20page%20%2Fbook/point_cluster.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -316,7 +391,24 @@
       
       
       
-      <li><a href="../_sources/book/markdown2.md" target="_blank"
+      <li><a href="../_sources/book/point_cluster.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/book/point_cluster.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -400,7 +492,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to Open Publishing</h1>
+    <h1>Point Pattern Analysis: Clusters</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -410,15 +502,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">8.1. What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-roles-and-directives">8.2. What are roles and directives?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-directive">8.2.1. Using a directive</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-role">8.2.2. Using a role</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-figure">8.2.3. Adding a figure</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-citation">8.2.4. Adding a citation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-code-in-your-markdown-files">8.2.5. Executing code in your markdown files</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-randomness">13.1. Point Randomness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#locate-clusters">13.2. Locate Clusters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-clusters-kernel-estimation">13.3. Mapping Clusters (Kernel Estimation)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-density-estimation-kde">13.4. Kernel Density Estimation (KDE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#issues-with-kde">13.5. Issues with KDE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-points">13.6. Clustering Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">13.7. K-Means Clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#density-based-spatial-clustering-dbscan">13.8. Density-Based Spatial Clustering (DBSCAN)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dbscan-in-the-map-compute-framework-mcf">13.9. DBSCAN in the Map Compute Framework (MCF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-mapping-vs-clustering">13.10. Summary: Mapping vs. Clustering</a></li>
 </ul>
             </nav>
         </div>
@@ -430,135 +523,143 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="topic abstract" role="doc-abstract">
-<p class="topic-title">Abstract</p>
-<p>This tutorial introduces open publishing techniques using Jupyter Book and demonstrates how to effectively publish your research.
-</p>
-</div>
-<section class="tex2jax_ignore mathjax_ignore" id="introduction-to-open-publishing">
-<h1><span class="section-number">8. </span>Introduction to Open Publishing<a class="headerlink" href="#introduction-to-open-publishing" title="Link to this heading">#</a></h1>
-<p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
-in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
-called <strong>MyST Markdown</strong>.</p>
-<section id="what-is-myst">
-<h2><span class="section-number">8.1. </span>What is MyST?<a class="headerlink" href="#what-is-myst" title="Link to this heading">#</a></h2>
-<p>MyST stands for “Markedly Structured Text”. It
-is a slight variation on a flavor of markdown called “CommonMark” markdown,
-with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
-in the Sphinx ecosystem.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="point-pattern-analysis-clusters">
+<h1><span class="section-number">13. </span>Point Pattern Analysis: Clusters<a class="headerlink" href="#point-pattern-analysis-clusters" title="Link to this heading">#</a></h1>
+<p>Topics:</p>
+<ul class="simple">
+<li><p>Mapping point clusters</p></li>
+<li><p>Clustering points</p></li>
+</ul>
+<section id="point-randomness">
+<h2><span class="section-number">13.1. </span>Point Randomness<a class="headerlink" href="#point-randomness" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Characterizing the overall point pattern (randomness):</p>
+<ul>
+<li><p>Random</p></li>
+<li><p>Uniform (Dispersed)</p></li>
+<li><p>Clustered</p></li>
+</ul>
+</li>
+</ul>
 </section>
-<section id="what-are-roles-and-directives">
-<h2><span class="section-number">8.2. </span>What are roles and directives?<a class="headerlink" href="#what-are-roles-and-directives" title="Link to this heading">#</a></h2>
-<p>Roles and directives are two of the most powerful tools in Jupyter Book. They
-are kind of like functions, but written in a markup language. They both
-serve a similar purpose, but <strong>roles are written in one line</strong>, whereas
-<strong>directives span many lines</strong>. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.</p>
-<section id="using-a-directive">
-<h3><span class="section-number">8.2.1. </span>Using a directive<a class="headerlink" href="#using-a-directive" title="Link to this heading">#</a></h3>
-<p>At its simplest, you can insert a directive into your book’s content like so:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{mydirectivename}
-My directive content
-```
-</pre></div>
-</div>
-<p>This will only work if a directive with name <code class="docutils literal notranslate"><span class="pre">mydirectivename</span></code> already exists
-(which it doesn’t). There are many pre-defined directives associated with
-Jupyter Book. For example, to insert a note box into your content, you can
-use the following directive:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{note}
-Here is a note
-```
-</pre></div>
-</div>
-<p>This results in:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here is a note</p>
-</div>
-<p>In your built book.</p>
-<p>For more information on writing directives, see the
-<a class="reference external" href="https://myst-parser.readthedocs.io/">MyST documentation</a>.</p>
+<section id="locate-clusters">
+<h2><span class="section-number">13.2. </span>Locate Clusters<a class="headerlink" href="#locate-clusters" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Knowing that a point distribution is clustered does not necessarily give information about where the clusters reside.</p></li>
+<li><p>Mapping clusters:</p>
+<ul>
+<li><p>Calculate spatial variation of point density.</p></li>
+<li><p>Useful if points are samples.</p></li>
+</ul>
+</li>
+<li><p>Clustering points:</p>
+<ul>
+<li><p>Identify specific points that are close to each other.</p></li>
+<li><p>Useful if points are the “population.”</p></li>
+</ul>
+</li>
+</ul>
 </section>
-<section id="using-a-role">
-<h3><span class="section-number">8.2.2. </span>Using a role<a class="headerlink" href="#using-a-role" title="Link to this heading">#</a></h3>
-<p>Roles are very similar to directives, but they are less-complex and written
-entirely on one line. You can insert a role into your book’s content with
-this pattern:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Some content {rolename}`and here is my role&#39;s content!`
-</pre></div>
-</div>
-<p>Again, roles will only work if <code class="docutils literal notranslate"><span class="pre">rolename</span></code> is a valid role’s name. For example,
-the <code class="docutils literal notranslate"><span class="pre">doc</span></code> role can be used to refer to another page in your book. You can
-refer directly to another page by its relative path.</p>
-<p>For more information on writing roles, see the
-<a class="reference external" href="https://myst-parser.readthedocs.io/">MyST documentation</a>.</p>
+<section id="mapping-clusters-kernel-estimation">
+<h2><span class="section-number">13.3. </span>Mapping Clusters (Kernel Estimation)<a class="headerlink" href="#mapping-clusters-kernel-estimation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Areas of high point density indicate clusters.</p></li>
+<li><p>Naïve point density mapping:</p>
+<ul>
+<li><p>Use a regular grid in space.</p></li>
+<li><p>Calculate the density of points within a circular neighborhood at each grid center.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Density = Number\ of\ points / \pi d^2\)</span></p></li>
+</ul>
+</li>
+</ul>
 </section>
-<section id="adding-a-figure">
-<h3><span class="section-number">8.2.3. </span>Adding a figure<a class="headerlink" href="#adding-a-figure" title="Link to this heading">#</a></h3>
-<p>You can also add figures to your book.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:::{figure} https://assets.gishub.org/images/book-cover.png
-:label: gispro-book-cover
-:alt: GISPro Book Cover
-:align: center
-:width: 100%
-
-GIS Programming with Python Book Cover.
-:::
-</pre></div>
-</div>
-<figure class="align-center" id="id3">
-<img alt="GISPro Book Cover" src="https://assets.gishub.org/images/book-cover.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 8.1 </span><span class="caption-text">GIS Programming with Python Book Cover.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
+<section id="kernel-density-estimation-kde">
+<h2><span class="section-number">13.4. </span>Kernel Density Estimation (KDE)<a class="headerlink" href="#kernel-density-estimation-kde" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A focal operation where weights are defined by a continuous kernel function.</p></li>
+<li><p>The weight is highest at the center (focus) and decreases to zero at the neighborhood boundary (bandwidth).</p></li>
+<li><p>Provides a smoother surface than naïve density mapping.</p></li>
+</ul>
 </section>
-<section id="adding-a-citation">
-<h3><span class="section-number">8.2.4. </span>Adding a citation<a class="headerlink" href="#adding-a-citation" title="Link to this heading">#</a></h3>
-<p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
-the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`holdgraf_evidence_2014`</span></code> will render like
-this: <span id="id1">[<a class="reference internal" href="bibliography.html#id2" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In International Conference on Cognitive Neuroscience. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.">Holdgraf <em>et al.</em>, 2014</a>]</span>.</p>
-<p>Multiple citations can be used like this:
-<span id="id2">[<a class="reference internal" href="bibliography.html#id3" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, Jochem W. Rieger, Nathan Crone, Jack J. Lin, Robert T. Knight, and Frédéric E. Theunissen. Rapid tuning shifts in human auditory cortex enhance speech intelligibility. Nature Communications, 7(May):13654, 2016. URL: http://www.nature.com/doifinder/10.1038/ncomms13654, doi:10.1038/ncomms13654.">Holdgraf <em>et al.</em>, 2016</a>, <a class="reference internal" href="bibliography.html#id5" title="Christopher Ramsay Holdgraf, J.W. Rieger, C. Micheli, S. Martin, R.T. Knight, and F.E. Theunissen. Encoding and decoding models in cognitive electrophysiology. Frontiers in Systems Neuroscience, 2017. doi:10.3389/fnsys.2017.00061.">Holdgraf <em>et al.</em>, 2017</a>]</span></p>
-<p>Moreover, you can insert a bibliography into your page with this syntax:
-The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
-render properly.
-For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
-then the bibliography is inserted with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{bibliography}
-```
-</pre></div>
-</div>
-<p>Resulting in a rendered bibliography that looks like:</p>
-<!-- ```{bibliography}
-
-``` -->
+<section id="issues-with-kde">
+<h2><span class="section-number">13.5. </span>Issues with KDE<a class="headerlink" href="#issues-with-kde" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Choice of bandwidth (radius) significantly impacts the result.</p>
+<ul>
+<li><p>Small bandwidth: Shows local variation and noise.</p></li>
+<li><p>Large bandwidth: Shows broad trends but hides local clusters.</p></li>
+</ul>
+</li>
+<li><p>Choice of kernel function (e.g., Quartic, Gaussian) has less impact than bandwidth.</p></li>
+</ul>
 </section>
-<section id="executing-code-in-your-markdown-files">
-<h3><span class="section-number">8.2.5. </span>Executing code in your markdown files<a class="headerlink" href="#executing-code-in-your-markdown-files" title="Link to this heading">#</a></h3>
-<p>If you’d like to include computational content inside these markdown files,
-you can use MyST Markdown to define cells that will be executed when your
-book is built. Jupyter Book uses <em>jupytext</em> to do this.</p>
-<p>First, add Jupytext metadata to the file. For example, to add Jupytext metadata
-to this markdown page, run this command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">myst</span> <span class="n">init</span> <span class="n">markdown</span><span class="o">.</span><span class="n">md</span>
-</pre></div>
-</div>
-<p>Once a markdown file has Jupytext metadata in it, you can add the following
-directive to run the code at build time:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{code-cell}
-print(&quot;Here is some code to execute&quot;)
-```
-</pre></div>
-</div>
-<p>When your book is built, the contents of any <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> blocks will be
-executed with your default Jupyter kernel, and their outputs will be displayed
-in-line with the rest of your content.</p>
-<p>For more information about executing computational content with Jupyter Book,
-see <a class="reference external" href="https://myst-nb.readthedocs.io/">The MyST-NB documentation</a>.</p>
+<section id="clustering-points">
+<h2><span class="section-number">13.6. </span>Clustering Points<a class="headerlink" href="#clustering-points" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Grouping points into categories based on spatial proximity.</p></li>
+<li><p>Goal: Find groups of points that are “closer” to each other than to points outside the group.</p></li>
+</ul>
 </section>
+<section id="k-means-clustering">
+<h2><span class="section-number">13.7. </span>K-Means Clustering<a class="headerlink" href="#k-means-clustering" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Partitions <span class="math notranslate nohighlight">\(n\)</span> points into <span class="math notranslate nohighlight">\(k\)</span> clusters.</p></li>
+<li><p>Procedure:</p>
+<ol class="arabic simple">
+<li><p>Randomly select <span class="math notranslate nohighlight">\(k\)</span> points as initial cluster centers (centroids).</p></li>
+<li><p>Assign each point to the nearest centroid.</p></li>
+<li><p>Re-calculate the centroids of the new clusters.</p></li>
+<li><p>Repeat steps 2 and 3 until centroids no longer move significantly.</p></li>
+</ol>
+</li>
+<li><p>Issue: You must specify the number of clusters (<span class="math notranslate nohighlight">\(k\)</span>) in advance.</p></li>
+</ul>
+</section>
+<section id="density-based-spatial-clustering-dbscan">
+<h2><span class="section-number">13.8. </span>Density-Based Spatial Clustering (DBSCAN)<a class="headerlink" href="#density-based-spatial-clustering-dbscan" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Classifies points into three categories:</p>
+<ul>
+<li><p>Cores: Points inside a cluster with at least <span class="math notranslate nohighlight">\(m-1\)</span> points within distance <span class="math notranslate nohighlight">\(r\)</span>.</p></li>
+<li><p>Borders: Points inside a cluster but with fewer than <span class="math notranslate nohighlight">\(m-1\)</span> points within distance <span class="math notranslate nohighlight">\(r\)</span>.</p></li>
+<li><p>Noise: Points not belonging to any cluster.</p></li>
+</ul>
+</li>
+<li><p>Does not require specifying the number of clusters in advance.</p></li>
+<li><p>Can identify clusters of arbitrary shapes.</p></li>
+</ul>
+</section>
+<section id="dbscan-in-the-map-compute-framework-mcf">
+<h2><span class="section-number">13.9. </span>DBSCAN in the Map Compute Framework (MCF)<a class="headerlink" href="#dbscan-in-the-map-compute-framework-mcf" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Viewed as a series of Neighborhood Relation and Graph operations.</p></li>
+<li><p>Step 1: NbrGraph (Neighborhood relation operation)</p>
+<ul>
+<li><p>Create a distance-based neighborhood (<span class="math notranslate nohighlight">\(r\)</span>).</p></li>
+<li><p>Form a graph where points are nodes and proximity forms links.</p></li>
+</ul>
+</li>
+<li><p>Step 2: Graph Analysis</p>
+<ul>
+<li><p>Identify sub-graphs (connected components).</p></li>
+<li><p>Classify sub-graphs based on the number of points (<span class="math notranslate nohighlight">\(m\)</span>).</p></li>
+</ul>
+</li>
+<li><p>Step 3: Node Classification</p>
+<ul>
+<li><p>Nodes in small sub-graphs (<span class="math notranslate nohighlight">\(&lt; m\)</span>) are noise.</p></li>
+<li><p>Nodes in large sub-graphs (<span class="math notranslate nohighlight">\(\ge m\)</span>) are core or border based on their degree (number of links).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="summary-mapping-vs-clustering">
+<h2><span class="section-number">13.10. </span>Summary: Mapping vs. Clustering<a class="headerlink" href="#summary-mapping-vs-clustering" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Mapping (KDE) results in a continuous surface (raster) showing the intensity of events.</p></li>
+<li><p>Clustering (DBSCAN, K-Means) results in categorical assignments (attributes) for the original point features.</p></li>
+<li><p>Choice of method depends on whether you want to visualize a “heat map” or identify distinct groups for further analysis.</p></li>
+</ul>
 </section>
 </section>
 
@@ -593,20 +694,20 @@ see <a class="reference external" href="https://myst-nb.readthedocs.io/">The MyS
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="notebooks.html"
+       href="point_randomness.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Content with notebooks</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Point Pattern Analysis: Randomness</p>
       </div>
     </a>
     <a class="right-next"
-       href="bibliography.html"
+       href="spatial_autocorrelation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Bibliography</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Spatial Autocorrelation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -626,15 +727,16 @@ see <a class="reference external" href="https://myst-nb.readthedocs.io/">The MyS
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">8.1. What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-roles-and-directives">8.2. What are roles and directives?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-directive">8.2.1. Using a directive</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-role">8.2.2. Using a role</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-figure">8.2.3. Adding a figure</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-citation">8.2.4. Adding a citation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-code-in-your-markdown-files">8.2.5. Executing code in your markdown files</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-randomness">13.1. Point Randomness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#locate-clusters">13.2. Locate Clusters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-clusters-kernel-estimation">13.3. Mapping Clusters (Kernel Estimation)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-density-estimation-kde">13.4. Kernel Density Estimation (KDE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#issues-with-kde">13.5. Issues with KDE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-points">13.6. Clustering Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">13.7. K-Means Clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#density-based-spatial-clustering-dbscan">13.8. Density-Based Spatial Clustering (DBSCAN)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dbscan-in-the-map-compute-framework-mcf">13.9. DBSCAN in the Map Compute Framework (MCF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-mapping-vs-clustering">13.10. Summary: Mapping vs. Clustering</a></li>
 </ul>
   </nav></div>
 

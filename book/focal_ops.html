@@ -1,0 +1,1027 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7. Focal Operation &#8212; Jupyter Book Demo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/focal_ops';</script>
+    <link rel="canonical" href="https://giswqs.github.io/jupyter-book-demo/book/focal_ops.html" />
+    <link rel="icon" href="../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. Zone as Mapping Unit and Neighborhood" href="zones.html" />
+    <link rel="prev" title="6. Local Operations" href="local_ops.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Jupyter Book Demo - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Jupyter Book Demo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="geographic_data.html">1. Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_statistics.html">2. Basic Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colocation.html">3. Spatial Relations: Co-location</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distance.html">4. Spatial Relationship: Distance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Map Compute Framework</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="map_compute.html">5. The Map Compute Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local_ops.html">6. Local Operations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Focal Operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zones.html">8. Zone as Mapping Unit and Neighborhood</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global_ops_and_set_mu.html">9. Global Operations, Effective Neighborhoods, and Analysis MUs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spatial Analysis with Map Compute Framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="nbr_ops_connectivity_distance.html">10. Neighborhood Relation Operations, Connectivity, and Distance Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="suitability.html">11. Multi-criteria Suitability Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="point_randomness.html">12. Point Pattern Analysis: Randomness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="point_cluster.html">13. Point Pattern Analysis: Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spatial_autocorrelation.html">14. Spatial Autocorrelation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_jupyterbook.html">How to write a book using Jupyter-Book on Github</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/giswqs/jupyter-book-demo/main?urlpath=tree/book/focal_ops.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/giswqs/jupyter-book-demo/blob/main/book/focal_ops.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/edit/main/book/focal_ops.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/issues/new?title=Issue%20on%20page%20%2Fbook/focal_ops.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/focal_ops.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/book/focal_ops.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Focal Operation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#focal-operations">7.1. Focal Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topics">7.2. Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.3. Focal Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#focal-neighborhood">7.4. Focal Neighborhood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characterizing-focal-neighborhoods">7.5. Characterizing Focal Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-window-neighborhoods">7.6. Moving-Window Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#focal-statistics">7.7. Focal Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-moving-window-operations">7.8. Examples of Moving-Window Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphology-shape-analysis">7.9. Morphology/Shape Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphology-shape-analysis-cont">7.10. Morphology/Shape Analysis (cont.)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-direction-based-neighborhoods">7.11. Distance/Direction-Based Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-appropriate-wind-farm-sites">7.12. Finding Appropriate Wind Farm Sites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-focal-operations">7.13. Types of Focal Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#irregular-weighted-neighborhood">7.14. Irregular Weighted Neighborhood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-moving-average-smoothing">7.15. Weighted Moving-Average (Smoothing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-density-estimation-kde">7.16. Kernel Density Estimation (KDE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-based-focal-neighborhoods">7.17. Process-Based Focal Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watershed-as-a-focal-neighborhood">7.18. Watershed as a Focal Neighborhood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-focal-operations-based-on-output">7.19. Types of Focal Operations (Based on Output)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-1-characterize-focal-neighborhood">7.20. Type 1: Characterize Focal Neighborhood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-2-compare-focus-mu-and-neighbors">7.21. Type 2: Compare Focus MU and Neighbors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrastvalue-operation-examples">7.22. ContrastValue Operation Examples</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="focal-operation">
+<h1><span class="section-number">7. </span>Focal Operation<a class="headerlink" href="#focal-operation" title="Link to this heading">#</a></h1>
+<section id="focal-operations">
+<h2><span class="section-number">7.1. </span>Focal Operations<a class="headerlink" href="#focal-operations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Operations:</p>
+<ul>
+<li><p>Local, focal and global operations based on the spatial scope of neighborhood</p></li>
+<li><p>Neighborhood relation operations</p></li>
+</ul>
+</li>
+<li><p>3 kinds of mapping/analysis units:</p>
+<ul>
+<li><p>Cells</p></li>
+<li><p>Raster zones</p></li>
+<li><p>Features</p></li>
+</ul>
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Mapping Units</p></th>
+<th class="head text-left"><p>Neighborhood Relation: Local</p></th>
+<th class="head text-left"><p>Neighborhood Relation: Focal</p></th>
+<th class="head text-left"><p>Neighborhood Relation: Global</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Cells</strong></p></td>
+<td class="text-left"><p>Local</p></td>
+<td class="text-left"><p>Focal</p></td>
+<td class="text-left"><p>Global</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Raster zones</strong></p></td>
+<td class="text-left"><p>Local</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Features (vectors)</strong></p></td>
+<td class="text-left"><p>Local</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="topics">
+<h2><span class="section-number">7.2. </span>Topics<a class="headerlink" href="#topics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Focal operations with raster map</p>
+<ul>
+<li><p>Moving-window, distance/direction based, irregular weighted neighborhoods</p></li>
+</ul>
+</li>
+<li><p>Focal operations with vector map</p>
+<ul>
+<li><p>Buffer</p></li>
+</ul>
+</li>
+<li><p>Domain-based focal neighborhoods</p>
+<ul>
+<li><p>Watershed</p></li>
+</ul>
+</li>
+<li><p>Types of focal operations</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2><span class="section-number">7.3. </span>Focal Operations<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Compute for each output MU with the neighbors of its focal neighborhood</p></li>
+<li><p>Cells, raster zones, vector features as MUs</p></li>
+<li><p>Data manipulation within MU’s focal neighborhood</p></li>
+</ul>
+</section>
+<section id="focal-neighborhood">
+<h2><span class="section-number">7.4. </span>Focal Neighborhood<a class="headerlink" href="#focal-neighborhood" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A set of locations that has a certain relationship with a MU</p>
+<ul>
+<li><p>Beyond the MU itself (vs local neighborhood)</p></li>
+</ul>
+</li>
+<li><p>Represents interactional relationship between a MU and other locations</p>
+<ul>
+<li><p>Exchange of matter, energy, and information</p></li>
+</ul>
+</li>
+<li><p>The MU is also referred to as the neighborhood focus</p></li>
+<li><p>The related locations are referred to as the neighbors</p></li>
+</ul>
+</section>
+<section id="characterizing-focal-neighborhoods">
+<h2><span class="section-number">7.5. </span>Characterizing Focal Neighborhoods<a class="headerlink" href="#characterizing-focal-neighborhoods" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Two ways to characterize focal neighborhoods:</p>
+<ul>
+<li><p>Based on distance and direction</p>
+<ul>
+<li><p>Moving-window (raster), Buffer (vector/raster)</p></li>
+</ul>
+</li>
+<li><p>Based on domain knowledge/processes</p>
+<ul>
+<li><p>Watershed, viewshed, network, etc.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="moving-window-neighborhoods">
+<h2><span class="section-number">7.6. </span>Moving-Window Neighborhoods<a class="headerlink" href="#moving-window-neighborhoods" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Neighborhood defined by a “window” of a specific shape and size</p></li>
+<li><p>The window “moves” from cell to cell</p></li>
+<li><p>Neighborhood is same for all cells (relative to the focus)</p></li>
+<li><p>Types:</p>
+<ul>
+<li><p>Square (3x3, 5x5, etc.)</p></li>
+<li><p>Circle</p></li>
+<li><p>Plus (rook’s case)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="focal-statistics">
+<h2><span class="section-number">7.7. </span>Focal Statistics<a class="headerlink" href="#focal-statistics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Calculate a statistic for the values within the moving window</p></li>
+<li><p>Common statistics:</p>
+<ul>
+<li><p><strong>FocalSum</strong>: Total value (e.g., total biomass)</p></li>
+<li><p><strong>FocalMean</strong>: Average value (smoothing)</p></li>
+<li><p><strong>FocalMax/FocalMin</strong>: Range or edge detection</p></li>
+<li><p><strong>FocalVariety</strong>: Number of unique values (diversity)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="examples-of-moving-window-operations">
+<h2><span class="section-number">7.8. </span>Examples of Moving-Window Operations<a class="headerlink" href="#examples-of-moving-window-operations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Smoothing</strong>: Use FocalMean to reduce noise in data</p></li>
+<li><p><strong>Edge Detection</strong>: Use FocalMax - FocalMin to find where values change rapidly</p></li>
+<li><p><strong>Focal Variety</strong>: Useful for identifying boundaries between different land cover types</p></li>
+</ul>
+</section>
+<section id="morphology-shape-analysis">
+<h2><span class="section-number">7.9. </span>Morphology/Shape Analysis<a class="headerlink" href="#morphology-shape-analysis" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Use Focal operations to analyze the shape of features</p></li>
+<li><p><strong>Erosion</strong>: Using FocalMinimum on a binary map</p>
+<ul>
+<li><p>Removes outer layer of pixels</p></li>
+</ul>
+</li>
+<li><p><strong>Expansion/Dilation</strong>: Using FocalMaximum on a binary map</p>
+<ul>
+<li><p>Adds an outer layer of pixels</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="morphology-shape-analysis-cont">
+<h2><span class="section-number">7.10. </span>Morphology/Shape Analysis (cont.)<a class="headerlink" href="#morphology-shape-analysis-cont" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Inner Boundaries</strong>: Identify cells that are part of the feature but touch the background</p></li>
+<li><p><strong>Outer Boundaries</strong>: Identify background cells that touch the feature</p></li>
+<li><p>Combined boundaries provide detailed structural analysis</p></li>
+</ul>
+</section>
+<section id="distance-direction-based-neighborhoods">
+<h2><span class="section-number">7.11. </span>Distance/Direction-Based Neighborhoods<a class="headerlink" href="#distance-direction-based-neighborhoods" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Neighborhood defined by specific distance and directional parameters</p></li>
+<li><p>Neighborhoods in ArcGIS:</p>
+<ul>
+<li><p>Rectangle, circle, annulus (donut), or wedge (a slice of a circle)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="finding-appropriate-wind-farm-sites">
+<h2><span class="section-number">7.12. </span>Finding Appropriate Wind Farm Sites<a class="headerlink" href="#finding-appropriate-wind-farm-sites" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Selection criteria:</p>
+<ul>
+<li><p><strong>Wind speed</strong>: Higher elevation generally equals higher speed (Elevation &gt;= 1000m)</p></li>
+<li><p><strong>Aspect</strong>: Facing the prevailing wind direction</p></li>
+<li><p><strong>Wind exposure</strong>: Not blocked by nearby hills in the prevailing wind direction</p></li>
+</ul>
+</li>
+<li><p>Data needed:</p>
+<ul>
+<li><p>Prevailing wind direction (e.g., 225° to 315°)</p></li>
+<li><p>Digital Elevation Model (DEM)</p></li>
+</ul>
+</li>
+<li><p><strong>Wedge neighborhood</strong>: Used to check for obstructions in the specific wind direction</p></li>
+</ul>
+</section>
+<section id="types-of-focal-operations">
+<h2><span class="section-number">7.13. </span>Types of Focal Operations<a class="headerlink" href="#types-of-focal-operations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Simple Focal Operations</strong>: Neighborhood is predefined (shape/size)</p>
+<ul>
+<li><p>Example: Moving window</p></li>
+</ul>
+</li>
+<li><p><strong>Irregular/Weighted Focal Operations</strong>: Neighbors have different “weights” or importance</p>
+<ul>
+<li><p>Example: Gravity model, Kernel density estimation</p></li>
+</ul>
+</li>
+<li><p><strong>Process-based Focal Operations</strong>: Neighborhood is defined by a physical process</p>
+<ul>
+<li><p>Example: Watershed (defined by terrain/gravity)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="irregular-weighted-neighborhood">
+<h2><span class="section-number">7.14. </span>Irregular Weighted Neighborhood<a class="headerlink" href="#irregular-weighted-neighborhood" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Neighborhood and weights are defined by a matrix</p>
+<ul>
+<li><p>0s indicate a location is not a neighbor</p></li>
+<li><p>Other values represent weight (neighbor relation property)</p></li>
+</ul>
+</li>
+<li><p>Matrix can be stored as a neighborhood text file</p>
+<ul>
+<li><p>Kernel file in ArcGIS</p></li>
+</ul>
+</li>
+<li><p>All cells use the same neighborhood structure</p></li>
+<li><p>Operation: <strong>Weighted Summary</strong></p>
+<ul>
+<li><p>Get the neighbor value from the input map</p></li>
+<li><p>Summarize (weight * value)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="weighted-moving-average-smoothing">
+<h2><span class="section-number">7.15. </span>Weighted Moving-Average (Smoothing)<a class="headerlink" href="#weighted-moving-average-smoothing" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Weights are inversely proportional to distance</p></li>
+<li><p>The weight for the focus MU is typically the largest</p></li>
+<li><p>Used to reduce noise while preserving more detail than a simple mean</p></li>
+</ul>
+</section>
+<section id="kernel-density-estimation-kde">
+<h2><span class="section-number">7.16. </span>Kernel Density Estimation (KDE)<a class="headerlink" href="#kernel-density-estimation-kde" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Neighborhood is a circle with a radius (bandwidth)</p></li>
+<li><p>Weights are defined by a continuous kernel function</p>
+<ul>
+<li><p>Weight is highest at the center and decreases to zero at the boundary</p></li>
+</ul>
+</li>
+<li><p>Operations:</p>
+<ol class="arabic simple">
+<li><p>Calculate weighted value for each neighbor (Weight * Value)</p></li>
+<li><p>Sum all weighted values</p></li>
+<li><p>Normalize (optional)</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="process-based-focal-neighborhoods">
+<h2><span class="section-number">7.17. </span>Process-Based Focal Neighborhoods<a class="headerlink" href="#process-based-focal-neighborhoods" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Neighborhood is defined by a physical or social process</p></li>
+<li><p>Examples:</p>
+<ul>
+<li><p><strong>Watershed</strong>: Neighborhood defined by terrain and gravity (flow of water)</p></li>
+<li><p><strong>Viewshed</strong>: Neighborhood defined by line-of-sight and topography</p></li>
+<li><p><strong>Service Area</strong>: Neighborhood defined by travel time on a road network</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="watershed-as-a-focal-neighborhood">
+<h2><span class="section-number">7.18. </span>Watershed as a Focal Neighborhood<a class="headerlink" href="#watershed-as-a-focal-neighborhood" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A watershed is a neighborhood where all locations drain to a common outlet (focus)</p></li>
+<li><p>Interaction: Water, sediment, and pollutants move from neighbors to the focus</p></li>
+<li><p>Neighborhood is irregular and varies from location to location</p></li>
+</ul>
+</section>
+<section id="types-of-focal-operations-based-on-output">
+<h2><span class="section-number">7.19. </span>Types of Focal Operations (Based on Output)<a class="headerlink" href="#types-of-focal-operations-based-on-output" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Three types of focal operations based on what the output value represents:</p>
+<ol class="arabic simple">
+<li><p>Characterize focal neighborhood</p></li>
+<li><p>Compare focus MU and its neighbors</p></li>
+<li><p>Predict attribute at the focus MU</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="type-1-characterize-focal-neighborhood">
+<h2><span class="section-number">7.20. </span>Type 1: Characterize Focal Neighborhood<a class="headerlink" href="#type-1-characterize-focal-neighborhood" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The output value summarizes the attributes within the neighborhood</p></li>
+<li><p>Focal Statistics:</p>
+<ul>
+<li><p><strong>FocalSum</strong>: Total amount</p></li>
+<li><p><strong>FocalMean</strong>: Average intensity/density</p></li>
+<li><p><strong>FocalMax/FocalMin</strong>: Extremes</p></li>
+<li><p><strong>FocalVariety</strong>: Diversity/Heterogeneity</p></li>
+<li><p><strong>FocalMajority</strong>: Dominant type</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="type-2-compare-focus-mu-and-neighbors">
+<h2><span class="section-number">7.21. </span>Type 2: Compare Focus MU and Neighbors<a class="headerlink" href="#type-2-compare-focus-mu-and-neighbors" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The output value represents the relationship or contrast between the focus and its surrounding area</p></li>
+<li><p>Operations:</p>
+<ul>
+<li><p><strong>ContrastLocation</strong>: Distance to specific neighbors</p></li>
+<li><p><strong>ContrastValue</strong>: Difference between focus value and neighborhood mean</p></li>
+<li><p><strong>FocalPercentage</strong>: Percentage of neighbors with values equal to the focus</p></li>
+<li><p><strong>FocalPercentile</strong>: Percentage of neighbors with values less than the focus</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="contrastvalue-operation-examples">
+<h2><span class="section-number">7.22. </span>ContrastValue Operation Examples<a class="headerlink" href="#contrastvalue-operation-examples" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>FocalPercentage</strong>:</p>
+<ul>
+<li><p>Measures the homogeneity of the focus relative to its neighbors</p></li>
+</ul>
+</li>
+<li><p><strong>FocalPercentile</strong>:</p>
+<ul>
+<li><p>Identifies if a focus MU is a local peak (high percentile) or local pit (low percentile)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "giswqs/jupyter-book-demo",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="local_ops.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Local Operations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="zones.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Zone as Mapping Unit and Neighborhood</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#focal-operations">7.1. Focal Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topics">7.2. Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.3. Focal Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#focal-neighborhood">7.4. Focal Neighborhood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characterizing-focal-neighborhoods">7.5. Characterizing Focal Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-window-neighborhoods">7.6. Moving-Window Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#focal-statistics">7.7. Focal Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-moving-window-operations">7.8. Examples of Moving-Window Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphology-shape-analysis">7.9. Morphology/Shape Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#morphology-shape-analysis-cont">7.10. Morphology/Shape Analysis (cont.)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-direction-based-neighborhoods">7.11. Distance/Direction-Based Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-appropriate-wind-farm-sites">7.12. Finding Appropriate Wind Farm Sites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-focal-operations">7.13. Types of Focal Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#irregular-weighted-neighborhood">7.14. Irregular Weighted Neighborhood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-moving-average-smoothing">7.15. Weighted Moving-Average (Smoothing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-density-estimation-kde">7.16. Kernel Density Estimation (KDE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-based-focal-neighborhoods">7.17. Process-Based Focal Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watershed-as-a-focal-neighborhood">7.18. Watershed as a Focal Neighborhood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-focal-operations-based-on-output">7.19. Types of Focal Operations (Based on Output)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-1-characterize-focal-neighborhood">7.20. Type 1: Characterize Focal Neighborhood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-2-compare-focus-mu-and-neighbors">7.21. Type 2: Compare Focus MU and Neighbors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contrastvalue-operation-examples">7.22. ContrastValue Operation Examples</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xingong Li
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

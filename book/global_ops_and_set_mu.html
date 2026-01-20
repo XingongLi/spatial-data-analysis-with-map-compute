@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>7. Content with notebooks &#8212; Jupyter Book Demo</title>
+    <title>9. Global Operations, Effective Neighborhoods, and Analysis MUs &#8212; Jupyter Book Demo</title>
   
   
   
@@ -59,13 +59,13 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'book/notebooks';</script>
-    <link rel="canonical" href="https://giswqs.github.io/jupyter-book-demo/book/notebooks.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/global_ops_and_set_mu';</script>
+    <link rel="canonical" href="https://giswqs.github.io/jupyter-book-demo/book/global_ops_and_set_mu.html" />
     <link rel="icon" href="../_static/fav.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8. Introduction to Open Publishing" href="markdown2.html" />
-    <link rel="prev" title="6. How to Write and Publish a Book" href="introduction.html" />
+    <link rel="next" title="10. Neighborhood Relation Operations, Connectivity, and Distance Analysis" href="nbr_ops_connectivity_distance.html" />
+    <link rel="prev" title="8. Zone as Mapping Unit and Neighborhood" href="zones.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,20 +181,26 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="geographic_data.html">1. Fundamentals of Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geographic_data.html">1. Geospatial Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_statistics.html">2. Basic Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="colocation.html">3. Fundamental/Basic Spatial Relationships (co-location)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="distance.html">4. Fundamental Spatial Relationship (Distance)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">5. Introduction to Open Publishing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">6. How to Write and Publish a Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colocation.html">3. Spatial Relations: Co-location</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distance.html">4. Spatial Relationship: Distance</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Map Compute Framework</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_compute.html">5. The Map Compute Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local_ops.html">6. Local Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="focal_ops.html">7. Focal Operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zones.html">8. Zone as Mapping Unit and Neighborhood</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Global Operations, Effective Neighborhoods, and Analysis MUs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Spatial Analysis with Map Compute Framework</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown2.html">8. Introduction to Open Publishing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nbr_ops_connectivity_distance.html">10. Neighborhood Relation Operations, Connectivity, and Distance Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="suitability.html">11. Multi-criteria Suitability Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="point_randomness.html">12. Point Pattern Analysis: Randomness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="point_cluster.html">13. Point Pattern Analysis: Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spatial_autocorrelation.html">14. Spatial Autocorrelation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
@@ -254,7 +260,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/giswqs/jupyter-book-demo/main?urlpath=tree/book/notebooks.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/giswqs/jupyter-book-demo/main?urlpath=tree/book/global_ops_and_set_mu.md" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -272,7 +278,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/giswqs/jupyter-book-demo/blob/main/book/notebooks.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/giswqs/jupyter-book-demo/blob/main/book/global_ops_and_set_mu.md" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -338,7 +344,7 @@
       
       
       
-      <li><a href="https://github.com/giswqs/jupyter-book-demo/edit/main/book/notebooks.ipynb" target="_blank"
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/edit/main/book/global_ops_and_set_mu.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -355,7 +361,7 @@
       
       
       
-      <li><a href="https://github.com/giswqs/jupyter-book-demo/issues/new?title=Issue%20on%20page%20%2Fbook/notebooks.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/issues/new?title=Issue%20on%20page%20%2Fbook/global_ops_and_set_mu.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -385,7 +391,24 @@
       
       
       
-      <li><a href="../_sources/book/notebooks.ipynb" target="_blank"
+      <li><a href="../_sources/book/global_ops_and_set_mu.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/book/global_ops_and_set_mu.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -395,7 +418,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -469,7 +492,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Content with notebooks</h1>
+    <h1>Global Operations, Effective Neighborhoods, and Analysis MUs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -479,9 +502,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown-notebooks">7.1. Markdown + notebooks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#myst-markdown">7.2. MyST markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-blocks-and-outputs">7.3. Code blocks and outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topics">9.1. Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-neighborhoods">9.2. Global Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-operations">9.3. Global Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean-distance-as-a-global-operation">9.4. Euclidean Distance as a Global Operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effective-neighborhood-and-neighbors">9.5. Effective Neighborhood and Neighbors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characterizing-effective-neighborhoods">9.6. Characterizing Effective Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-analysis-output-mapping-units">9.7. Setting Analysis/Output Mapping Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-statistics-in-arcgis">9.8. Block Statistics in ArcGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-output-mus-with-two-input-vector-maps">9.9. Setting Output MUs with Two Input Vector Maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-statistics-tool-in-arcgis">9.10. Point Statistics Tool in ArcGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-analysis-units">9.11. Summary of Analysis Units</a></li>
 </ul>
             </nav>
         </div>
@@ -493,87 +524,127 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="content-with-notebooks">
-<h1><span class="section-number">7. </span>Content with notebooks<a class="headerlink" href="#content-with-notebooks" title="Link to this heading">#</a></h1>
-<p>You can also create content with Jupyter Notebooks. This means that you can include
-code blocks and their outputs in your book.</p>
-<section id="markdown-notebooks">
-<h2><span class="section-number">7.1. </span>Markdown + notebooks<a class="headerlink" href="#markdown-notebooks" title="Link to this heading">#</a></h2>
-<p>As it is markdown, you can embed images, HTML, etc into your posts!</p>
-<p><img alt="" src="https://myst-parser.readthedocs.io/en/latest/_static/logo-wide.svg" /></p>
-<p>You can also <span class="math notranslate nohighlight">\(add_{math}\)</span> and</p>
-<div class="math notranslate nohighlight">
-\[
-math^{blocks}
-\]</div>
-<p>or</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\mbox{mean} la_{tex} \\ \\
-math blocks
-\end{aligned}
-\end{split}\]</div>
-<p>But make sure you $Escape $your $dollar signs $you want to keep!</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="global-operations-effective-neighborhoods-and-analysis-mus">
+<h1><span class="section-number">9. </span>Global Operations, Effective Neighborhoods, and Analysis MUs<a class="headerlink" href="#global-operations-effective-neighborhoods-and-analysis-mus" title="Link to this heading">#</a></h1>
+<section id="topics">
+<h2><span class="section-number">9.1. </span>Topics<a class="headerlink" href="#topics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Global neighborhood and operation</p></li>
+<li><p>Effective neighborhood and neighbor</p></li>
+<li><p>Setting output/analysis mapping unit</p></li>
+</ul>
 </section>
-<section id="myst-markdown">
-<h2><span class="section-number">7.2. </span>MyST markdown<a class="headerlink" href="#myst-markdown" title="Link to this heading">#</a></h2>
-<p>MyST markdown works in Jupyter Notebooks as well. For more information about MyST markdown, check
-out <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST guide in Jupyter Book</a>,
-or see <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">the MyST markdown documentation</a>.</p>
+<section id="global-neighborhoods">
+<h2><span class="section-number">9.2. </span>Global Neighborhoods<a class="headerlink" href="#global-neighborhoods" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A local neighborhood is the focus MU itself; each neighborhood is unique and there is no overlap in space.</p></li>
+<li><p>A focal neighborhood goes beyond the focus MU; neighborhoods may overlap in space.</p></li>
+<li><p>Global neighborhood:</p>
+<ul>
+<li><p>All MUs have the same neighborhood.</p></li>
+<li><p>Includes all the MUs in the map (or otherwise specified extent).</p></li>
+</ul>
+</li>
+</ul>
 </section>
-<section id="code-blocks-and-outputs">
-<h2><span class="section-number">7.3. </span>Code blocks and outputs<a class="headerlink" href="#code-blocks-and-outputs" title="Link to this heading">#</a></h2>
-<p>Jupyter Book will also embed your code blocks and output in your book.
-For example, here’s some sample Matplotlib code:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">cycler</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;contextlib.ExitStack at 0x7fda10f6a490&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fixing random state for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">19680801</span><span class="p">)</span>
-
-<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span>
-<span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.prop_cycle&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cycler</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)))</span>
-
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.lines</span><span class="w"> </span><span class="kn">import</span> <span class="n">Line2D</span>
-
-<span class="n">custom_lines</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-    <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-    <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-<span class="p">]</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">lines</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">custom_lines</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Cold&quot;</span><span class="p">,</span> <span class="s2">&quot;Medium&quot;</span><span class="p">,</span> <span class="s2">&quot;Hot&quot;</span><span class="p">]);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/9ff6d8b7fa5432933aabed53db6a296a7ef05fe20c426238837b2d5e22ba821d.png" src="../_images/9ff6d8b7fa5432933aabed53db6a296a7ef05fe20c426238837b2d5e22ba821d.png" />
-</div>
-</div>
-<p>There is a lot more that you can do with outputs (such as including interactive outputs)
-with your book. For more information about this, see <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a></p>
+<section id="global-operations">
+<h2><span class="section-number">9.3. </span>Global Operations<a class="headerlink" href="#global-operations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Operations that characterize the entire map.</p></li>
+<li><p>Compute a new map where the value for each MU is a function of all values on the input map(s).</p></li>
+<li><p>Global Statistics: GlobalMin, GlobalMax, GlobalMean, GlobalStandardDeviation.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Value_{new} = f(Values_{global})\)</span></p></li>
+</ul>
+</section>
+<section id="euclidean-distance-as-a-global-operation">
+<h2><span class="section-number">9.4. </span>Euclidean Distance as a Global Operation<a class="headerlink" href="#euclidean-distance-as-a-global-operation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Euclidean distance is a global operation because the distance to the nearest source depends on the locations of all source features across the entire map.</p></li>
+<li><p>Every cell in the output raster receives a value representing the distance to the closest source.</p></li>
+</ul>
+</section>
+<section id="effective-neighborhood-and-neighbors">
+<h2><span class="section-number">9.5. </span>Effective Neighborhood and Neighbors<a class="headerlink" href="#effective-neighborhood-and-neighbors" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A focal neighborhood can be very large (e.g., a large buffer or a large watershed).</p></li>
+<li><p>Effective neighbors: The subset of neighbors that actually exist or contain data within the defined neighborhood.</p></li>
+<li><p>In vector data, a neighborhood (like a circle) might overlap multiple census blocks; those blocks are the effective neighbors.</p></li>
+</ul>
+</section>
+<section id="characterizing-effective-neighborhoods">
+<h2><span class="section-number">9.6. </span>Characterizing Effective Neighborhoods<a class="headerlink" href="#characterizing-effective-neighborhoods" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Characterize neighbor attribute(s) and geometry:</p>
+<ul>
+<li><p>LocalCount, LocalSum, LocalStats.</p></li>
+<li><p>Line length, polygon area.</p></li>
+</ul>
+</li>
+<li><p>Characterize neighbor location:</p>
+<ul>
+<li><p>Mean center (the “center of gravity” for the neighbors).</p></li>
+</ul>
+</li>
+<li><p>Characterize neighbor attribute(s) and location:</p>
+<ul>
+<li><p>Weighted mean center.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="setting-analysis-output-mapping-units">
+<h2><span class="section-number">9.7. </span>Setting Analysis/Output Mapping Units<a class="headerlink" href="#setting-analysis-output-mapping-units" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>How to define the MUs for the output map when performing an operation.</p></li>
+<li><p>Usually, the output MUs are:</p>
+<ul>
+<li><p>Same as the input MUs (most local and focal operations).</p></li>
+<li><p>Defined by a specific layer (e.g., using census blocks as the analysis units for a point-in-polygon operation).</p></li>
+<li><p>Created by the intersection of multiple input maps (e.g., vector overlay).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="block-statistics-in-arcgis">
+<h2><span class="section-number">9.8. </span>Block Statistics in ArcGIS<a class="headerlink" href="#block-statistics-in-arcgis" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Performs a neighborhood operation that computes an output where the value for each non-overlapping “block” is a function of the input.</p></li>
+<li><p>In the Map Compute Framework, this is viewed as:</p>
+<ul>
+<li><p>Blocks = raster zones.</p></li>
+<li><p>LocalStatistics with blocks as MUs.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="setting-output-mus-with-two-input-vector-maps">
+<h2><span class="section-number">9.9. </span>Setting Output MUs with Two Input Vector Maps<a class="headerlink" href="#setting-output-mus-with-two-input-vector-maps" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Vector overlay tools define output MUs based on geometric intersections:</p>
+<ul>
+<li><p>Intersect: Keeps only areas common to both.</p></li>
+<li><p>Identity: Keeps all areas of the first input, and only overlapping parts of the second.</p></li>
+<li><p>Union: Keeps all areas from both inputs.</p></li>
+<li><p>Symmetrical Difference: Keeps areas in either input, but not both.</p></li>
+<li><p>Erase: Removes areas of the input that overlap the erase features.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="point-statistics-tool-in-arcgis">
+<h2><span class="section-number">9.10. </span>Point Statistics Tool in ArcGIS<a class="headerlink" href="#point-statistics-tool-in-arcgis" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The tool performs a neighborhood operation where the value for each output cell is a function of the input point features falling within a specified neighborhood.</p></li>
+<li><p>This is a focal operation where the analysis unit is a cell, but the input data comes from point features.</p></li>
+</ul>
+</section>
+<section id="summary-of-analysis-units">
+<h2><span class="section-number">9.11. </span>Summary of Analysis Units<a class="headerlink" href="#summary-of-analysis-units" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Choice of MU impacts the results (The Modifiable Areal Unit Problem - MAUP).</p></li>
+<li><p>Local operations can involve a change in MUs (e.g., aggregating points into polygons).</p></li>
+<li><p>Vector overlay is essentially a process of generating a new set of analysis MUs that inherit attributes from multiple sources.</p></li>
+</ul>
 </section>
 </section>
 
@@ -608,20 +679,20 @@ with your book. For more information about this, see <a class="reference externa
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="introduction.html"
+       href="zones.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>How to Write and Publish a Book</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Zone as Mapping Unit and Neighborhood</p>
       </div>
     </a>
     <a class="right-next"
-       href="markdown2.html"
+       href="nbr_ops_connectivity_distance.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">8. </span>Introduction to Open Publishing</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Neighborhood Relation Operations, Connectivity, and Distance Analysis</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -641,9 +712,17 @@ with your book. For more information about this, see <a class="reference externa
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown-notebooks">7.1. Markdown + notebooks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#myst-markdown">7.2. MyST markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-blocks-and-outputs">7.3. Code blocks and outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topics">9.1. Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-neighborhoods">9.2. Global Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-operations">9.3. Global Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean-distance-as-a-global-operation">9.4. Euclidean Distance as a Global Operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effective-neighborhood-and-neighbors">9.5. Effective Neighborhood and Neighbors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characterizing-effective-neighborhoods">9.6. Characterizing Effective Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-analysis-output-mapping-units">9.7. Setting Analysis/Output Mapping Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#block-statistics-in-arcgis">9.8. Block Statistics in ArcGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-output-mus-with-two-input-vector-maps">9.9. Setting Output MUs with Two Input Vector Maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-statistics-tool-in-arcgis">9.10. Point Statistics Tool in ArcGIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-analysis-units">9.11. Summary of Analysis Units</a></li>
 </ul>
   </nav></div>
 

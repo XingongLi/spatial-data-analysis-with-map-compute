@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Fundamental Spatial Relationship (Distance) &#8212; Jupyter Book Demo</title>
+    <title>4. Spatial Relationship: Distance &#8212; Jupyter Book Demo</title>
   
   
   
@@ -64,8 +64,8 @@
     <link rel="icon" href="../_static/fav.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Introduction to Open Publishing" href="markdown.html" />
-    <link rel="prev" title="3. Fundamental/Basic Spatial Relationships (co-location)" href="colocation.html" />
+    <link rel="next" title="5. The Map Compute Framework" href="map_compute.html" />
+    <link rel="prev" title="3. Spatial Relations: Co-location" href="colocation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,20 +181,26 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="geographic_data.html">1. Fundamentals of Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geographic_data.html">1. Geospatial Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_statistics.html">2. Basic Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="colocation.html">3. Fundamental/Basic Spatial Relationships (co-location)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Fundamental Spatial Relationship (Distance)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">5. Introduction to Open Publishing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">6. How to Write and Publish a Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colocation.html">3. Spatial Relations: Co-location</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Spatial Relationship: Distance</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Map Compute Framework</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">7. Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_compute.html">5. The Map Compute Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local_ops.html">6. Local Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="focal_ops.html">7. Focal Operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zones.html">8. Zone as Mapping Unit and Neighborhood</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global_ops_and_set_mu.html">9. Global Operations, Effective Neighborhoods, and Analysis MUs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Spatial Analysis with Map Compute Framework</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown2.html">8. Introduction to Open Publishing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nbr_ops_connectivity_distance.html">10. Neighborhood Relation Operations, Connectivity, and Distance Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="suitability.html">11. Multi-criteria Suitability Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="point_randomness.html">12. Point Pattern Analysis: Randomness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="point_cluster.html">13. Point Pattern Analysis: Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spatial_autocorrelation.html">14. Spatial Autocorrelation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
@@ -486,7 +492,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Fundamental Spatial Relationship (Distance)</h1>
+    <h1>Spatial Relationship: Distance</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -523,8 +529,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="fundamental-spatial-relationship-distance">
-<h1><span class="section-number">4. </span>Fundamental Spatial Relationship (Distance)<a class="headerlink" href="#fundamental-spatial-relationship-distance" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="spatial-relationship-distance">
+<h1><span class="section-number">4. </span>Spatial Relationship: Distance<a class="headerlink" href="#spatial-relationship-distance" title="Link to this heading">#</a></h1>
 <section id="topics">
 <h2><span class="section-number">4.1. </span>Topics<a class="headerlink" href="#topics" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -782,15 +788,15 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Fundamental/Basic Spatial Relationships (co-location)</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Spatial Relations: Co-location</p>
       </div>
     </a>
     <a class="right-next"
-       href="markdown.html"
+       href="map_compute.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Introduction to Open Publishing</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>The Map Compute Framework</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

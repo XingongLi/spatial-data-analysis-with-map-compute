@@ -1,0 +1,1006 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. Zone as Mapping Unit and Neighborhood &#8212; Jupyter Book Demo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/zones';</script>
+    <link rel="canonical" href="https://giswqs.github.io/jupyter-book-demo/book/zones.html" />
+    <link rel="icon" href="../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. Global Operations, Effective Neighborhoods, and Analysis MUs" href="global_ops_and_set_mu.html" />
+    <link rel="prev" title="7. Focal Operation" href="focal_ops.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Jupyter Book Demo - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Jupyter Book Demo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="geographic_data.html">1. Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_statistics.html">2. Basic Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colocation.html">3. Spatial Relations: Co-location</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distance.html">4. Spatial Relationship: Distance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Map Compute Framework</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="map_compute.html">5. The Map Compute Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local_ops.html">6. Local Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="focal_ops.html">7. Focal Operation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Zone as Mapping Unit and Neighborhood</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global_ops_and_set_mu.html">9. Global Operations, Effective Neighborhoods, and Analysis MUs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spatial Analysis with Map Compute Framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="nbr_ops_connectivity_distance.html">10. Neighborhood Relation Operations, Connectivity, and Distance Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="suitability.html">11. Multi-criteria Suitability Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="point_randomness.html">12. Point Pattern Analysis: Randomness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="point_cluster.html">13. Point Pattern Analysis: Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spatial_autocorrelation.html">14. Spatial Autocorrelation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_jupyterbook.html">How to write a book using Jupyter-Book on Github</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/giswqs/jupyter-book-demo/main?urlpath=tree/book/zones.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/giswqs/jupyter-book-demo/blob/main/book/zones.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/edit/main/book/zones.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/issues/new?title=Issue%20on%20page%20%2Fbook/zones.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/zones.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/book/zones.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Zone as Mapping Unit and Neighborhood</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-compute-framework">8.1. Map Compute Framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topics">8.2. Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-zones">8.3. Raster Zones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-zones-as-mapping-units">8.4. Raster Zones as Mapping Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-operations-with-raster-zones">8.5. Local Operations with Raster Zones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#focal-operations-with-raster-zones">8.6. Focal Operations with Raster Zones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-operations-with-raster-zones">8.7. Global Operations with Raster Zones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-zones-as-zonal-neighborhoods">8.8. Raster Zones as Zonal Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zonal-operations-in-map-algebra-ma">8.9. Zonal Operations in Map Algebra (MA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zonal-operations-in-the-map-compute-framework-mcf">8.10. Zonal Operations in the Map Compute Framework (MCF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-algebra-vs-map-compute-framework">8.11. Map Algebra vs. Map Compute Framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-parity-and-parsimony">8.12. Summary: Parity and Parsimony</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-algebra-vs-map-compute">8.13. Map Algebra vs Map Compute</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-zonal-operations-in-mcf">8.14. No Zonal Operations in MCF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arcgis-zonal-toolset">8.15. ArcGIS Zonal Toolset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siren-population-coverage-analysis-example">8.16. Siren Population Coverage Analysis Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siren-population-coverage-analysis-in-vector-data-model">8.17. Siren Population Coverage Analysis in Vector Data Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#population-coverage-analysis-in-vector-arcgis-workflows">8.18. Population Coverage Analysis in Vector (ArcGIS Workflows)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-siren-zone-raster-layer">8.19. Calculate Siren Zone Raster Layer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-vs-raster-analysis-summary">8.20. Vector vs Raster Analysis Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="zone-as-mapping-unit-and-neighborhood">
+<h1><span class="section-number">8. </span>Zone as Mapping Unit and Neighborhood<a class="headerlink" href="#zone-as-mapping-unit-and-neighborhood" title="Link to this heading">#</a></h1>
+<section id="map-compute-framework">
+<h2><span class="section-number">8.1. </span>Map Compute Framework<a class="headerlink" href="#map-compute-framework" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Operations:</p>
+<ul>
+<li><p>Local, focal, and global operations based on the spatial scope of neighborhood</p></li>
+<li><p>Neighborhood relation operations</p></li>
+</ul>
+</li>
+<li><p>3 kinds of mapping/analysis units:</p>
+<ul>
+<li><p>Cells, raster zones, vector features</p></li>
+</ul>
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Mapping Units</p></th>
+<th class="head text-left"><p>Neighborhood Relation: Local</p></th>
+<th class="head text-left"><p>Neighborhood Relation: Focal</p></th>
+<th class="head text-left"><p>Neighborhood Relation: Global</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Cells</p></td>
+<td class="text-left"><p>Local</p></td>
+<td class="text-left"><p>Focal</p></td>
+<td class="text-left"><p>Global</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Raster zones</p></td>
+<td class="text-left"><p>Local</p></td>
+<td class="text-left"><p>Focal</p></td>
+<td class="text-left"><p>Global</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Features (vectors)</p></td>
+<td class="text-left"><p>Local</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="topics">
+<h2><span class="section-number">8.2. </span>Topics<a class="headerlink" href="#topics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Raster zones as mapping units</p>
+<ul>
+<li><p>Local, focal, and global operations</p></li>
+</ul>
+</li>
+<li><p>Raster zones as neighborhoods</p>
+<ul>
+<li><p>Zonal neighborhoods</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="raster-zones">
+<h2><span class="section-number">8.3. </span>Raster Zones<a class="headerlink" href="#raster-zones" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A raster zone consists of a set of cells with the same condition/attribute or entity/identity.</p></li>
+<li><p>Acts as one of the 3 mapping units of a map (alongside cells and features).</p></li>
+<li><p>Often a raster representation of vector features obtained by vector-to-raster conversion.</p></li>
+<li><p>Examples include land cover types, soil types, or administrative boundaries.</p></li>
+</ul>
+</section>
+<section id="raster-zones-as-mapping-units">
+<h2><span class="section-number">8.4. </span>Raster Zones as Mapping Units<a class="headerlink" href="#raster-zones-as-mapping-units" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A map can be viewed as a function where the domain is a set of zones.</p></li>
+<li><p>Each zone has one or more attribute values.</p></li>
+<li><p>In ArcGIS, this is typically represented by a Raster Attribute Table (RAT).</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Value (Zone ID)</p></th>
+<th class="head text-left"><p>Count</p></th>
+<th class="head text-left"><p>LandCover_Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>1</p></td>
+<td class="text-left"><p>450</p></td>
+<td class="text-left"><p>Forest</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>2</p></td>
+<td class="text-left"><p>320</p></td>
+<td class="text-left"><p>Water</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>3</p></td>
+<td class="text-left"><p>150</p></td>
+<td class="text-left"><p>Urban</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="local-operations-with-raster-zones">
+<h2><span class="section-number">8.5. </span>Local Operations with Raster Zones<a class="headerlink" href="#local-operations-with-raster-zones" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Characterize attributes of the cells within each zone.</p></li>
+<li><p>The neighborhood is the zone itself.</p></li>
+<li><p>Operations include:</p>
+<ul>
+<li><p>ReduceSum: Total value of cells in the zone.</p></li>
+<li><p>ReduceMean: Average value of cells in the zone.</p></li>
+<li><p>ReduceMax / ReduceMin: Extreme values in the zone.</p></li>
+<li><p>ReduceVariety: Number of unique values in the zone.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="focal-operations-with-raster-zones">
+<h2><span class="section-number">8.6. </span>Focal Operations with Raster Zones<a class="headerlink" href="#focal-operations-with-raster-zones" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Modeling interactional relationships between zones.</p></li>
+<li><p>Requires a neighborhood relationship between zones, such as adjacency or distance.</p></li>
+<li><p>The output value for a zone depends on the attributes of its neighboring zones.</p></li>
+</ul>
+</section>
+<section id="global-operations-with-raster-zones">
+<h2><span class="section-number">8.7. </span>Global Operations with Raster Zones<a class="headerlink" href="#global-operations-with-raster-zones" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The output value for a zone depends on all other zones in the map.</p></li>
+<li><p>Examples include ranking zones by total area or mean elevation relative to the entire study area.</p></li>
+</ul>
+</section>
+<section id="raster-zones-as-zonal-neighborhoods">
+<h2><span class="section-number">8.8. </span>Raster Zones as Zonal Neighborhoods<a class="headerlink" href="#raster-zones-as-zonal-neighborhoods" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A zone can define a neighborhood for the cells it contains.</p></li>
+<li><p>Every cell within the same zone shares the same zonal neighborhood.</p></li>
+<li><p>This is a special type of focal neighborhood where the focus cell’s neighborhood is the entire zone it belongs to.</p></li>
+</ul>
+</section>
+<section id="zonal-operations-in-map-algebra-ma">
+<h2><span class="section-number">8.9. </span>Zonal Operations in Map Algebra (MA)<a class="headerlink" href="#zonal-operations-in-map-algebra-ma" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>In Tomlin’s Map Algebra, Zonal Operations are a distinct category.</p></li>
+<li><p>Requires two input rasters:</p>
+<ol class="arabic simple">
+<li><p>Zone Layer: Defines the boundaries.</p></li>
+<li><p>Value Layer: Provides the data to be processed.</p></li>
+</ol>
+</li>
+<li><p>Common tools: ZonalMean, ZonalSum, ZonalMaximum.</p></li>
+</ul>
+</section>
+<section id="zonal-operations-in-the-map-compute-framework-mcf">
+<h2><span class="section-number">8.10. </span>Zonal Operations in the Map Compute Framework (MCF)<a class="headerlink" href="#zonal-operations-in-the-map-compute-framework-mcf" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The MCF seeks simplicity by removing Zonal Operations as a separate category (applying Occam’s Razor).</p></li>
+<li><p>They are treated instead as:</p>
+<ol class="arabic simple">
+<li><p>Local operations with zones as MUs (summarizing a zone).</p></li>
+<li><p>Focal operations with zonal neighborhoods (assigning zonal data back to cells).</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="map-algebra-vs-map-compute-framework">
+<h2><span class="section-number">8.11. </span>Map Algebra vs. Map Compute Framework<a class="headerlink" href="#map-algebra-vs-map-compute-framework" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Zonal operations in MA are grouped by spatial scope.</p></li>
+<li><p>In MCF, local operations with zonal mapping units are more efficient for summarizing, while focal operations with zonal neighborhoods allow for contrasting focus cells with their surrounding zone.</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Operation Type</p></th>
+<th class="head text-left"><p>Map Algebra (MA)</p></th>
+<th class="head text-left"><p>Map Compute Framework (MCF)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Summarize Zone</p></td>
+<td class="text-left"><p>Zonal Statistics</p></td>
+<td class="text-left"><p>Local (Zone as MU)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Zone-based Focal</p></td>
+<td class="text-left"><p>Sub-zone operations</p></td>
+<td class="text-left"><p>Focal (Zonal Neighborhood)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="summary-parity-and-parsimony">
+<h2><span class="section-number">8.12. </span>Summary: Parity and Parsimony<a class="headerlink" href="#summary-parity-and-parsimony" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Occam’s Razor: The MCF uses the smallest set of elements to explain spatial analysis.</p></li>
+<li><p>Zonal operations are redundant because they can be described using local or focal definitions.</p></li>
+<li><p>This framework allows for additional possibilities, such as global operations applied specifically to zonal mapping units.</p></li>
+</ul>
+</section>
+<section id="map-algebra-vs-map-compute">
+<h2><span class="section-number">8.13. </span>Map Algebra vs Map Compute<a class="headerlink" href="#map-algebra-vs-map-compute" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Zonal operations in Map Algebra (MA)</p>
+<ul>
+<li><p>Raster operations are grouped as local, focal, and zonal according to the spatial scope of the operations.</p></li>
+</ul>
+</li>
+<li><p>Equivalent operations in Map Compute Framework (MCF)</p>
+<ul>
+<li><p>Local operations with zonal mapping units: Zone raster defines the MUs.</p></li>
+<li><p>Focal operations with zonal neighborhoods: Zone raster defines and stores zonal neighborhoods.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="no-zonal-operations-in-mcf">
+<h2><span class="section-number">8.14. </span>No Zonal Operations in MCF<a class="headerlink" href="#no-zonal-operations-in-mcf" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Occam’s (or Ockham’s) razor</p>
+<ul>
+<li><p>Principle that searches for explanations constructed with the smallest possible set of elements.</p></li>
+<li><p>It is also known as the principle of parsimony or the law of parsimony.</p></li>
+</ul>
+</li>
+<li><p>No zonal operations in MCF</p>
+<ul>
+<li><p>Zonal operations can be performed using local operations with raster zones as MUs or focal operations with zonal neighborhoods (a special neighborhood).</p></li>
+</ul>
+</li>
+<li><p>Additional operations (compared with MA)</p>
+<ul>
+<li><p>Focal and global operations with zonal MUs.</p></li>
+<li><p>Neighborhood relation operations with zonal neighborhoods.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="arcgis-zonal-toolset">
+<h2><span class="section-number">8.15. </span>ArcGIS Zonal Toolset<a class="headerlink" href="#arcgis-zonal-toolset" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Local operations with raster zone MUs</p>
+<ul>
+<li><p>Zonal geometry, histogram, statistics.</p></li>
+<li><p>Zonal fill: Finds the minimum value on a zone’s edge (LocalReduce operation using both location/edge and value).</p></li>
+<li><p>Tabulate area: LocalCombine operation.</p></li>
+</ul>
+</li>
+<li><p>Zone as neighborhoods</p>
+<ul>
+<li><p>These are not explicitly implemented as focal operations in ArcGIS.</p></li>
+<li><p>Block statistics tools provide some functional overlap.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="siren-population-coverage-analysis-example">
+<h2><span class="section-number">8.16. </span>Siren Population Coverage Analysis Example<a class="headerlink" href="#siren-population-coverage-analysis-example" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Problem: Determine the population covered by emergency sirens (5800 feet range).</p></li>
+<li><p>Approach: Compare vector vs. raster data models for this spatial analysis.</p></li>
+</ul>
+</section>
+<section id="siren-population-coverage-analysis-in-vector-data-model">
+<h2><span class="section-number">8.17. </span>Siren Population Coverage Analysis in Vector Data Model<a class="headerlink" href="#siren-population-coverage-analysis-in-vector-data-model" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Circle neighborhood: A buffer is created for each siren point.</p></li>
+<li><p>Neighborhood relation operation (NbrLocation):</p>
+<ul>
+<li><p>Combine all the individual circle neighborhoods together into a single multi-part coverage polygon.</p></li>
+</ul>
+</li>
+<li><p>Effective neighbors:</p>
+<ul>
+<li><p>Intersect the coverage polygon with census blocks to identify the overlapping areas.</p></li>
+</ul>
+</li>
+<li><p>Local sum:</p>
+<ul>
+<li><p>Sum the population from the effective neighbor census blocks.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="population-coverage-analysis-in-vector-arcgis-workflows">
+<h2><span class="section-number">8.18. </span>Population Coverage Analysis in Vector (ArcGIS Workflows)<a class="headerlink" href="#population-coverage-analysis-in-vector-arcgis-workflows" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Workflow A (Manual steps):</p>
+<ol class="arabic simple">
+<li><p>Generate and dissolve buffers.</p></li>
+<li><p>Intersect dissolved buffers with census blocks to get effective neighbors.</p></li>
+<li><p>Calculate effective neighbor population.</p></li>
+<li><p>Sum effective neighbor population.</p></li>
+</ol>
+</li>
+<li><p>Workflow B (Automated tool):</p>
+<ul>
+<li><p>Summarize Within: Performs these steps automatically under the hood.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="calculate-siren-zone-raster-layer">
+<h2><span class="section-number">8.19. </span>Calculate Siren Zone Raster Layer<a class="headerlink" href="#calculate-siren-zone-raster-layer" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Each siren point or cell has a 5800 feet neighborhood.</p></li>
+<li><p>Neighborhood relation operation (NbrLocation):</p>
+<ul>
+<li><p>Combines all the cells within any neighborhood to define a single raster zone representing the Coverage Area.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="vector-vs-raster-analysis-summary">
+<h2><span class="section-number">8.20. </span>Vector vs Raster Analysis Summary<a class="headerlink" href="#vector-vs-raster-analysis-summary" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Raster analysis:</p>
+<ul>
+<li><p>Applies an arbitrary spatial resolution.</p></li>
+<li><p>Requires choosing an appropriate cell size to balance processing time and accuracy.</p></li>
+<li><p>Risk of missing small polygons if the cell size is too large.</p></li>
+</ul>
+</li>
+<li><p>Vector analysis:</p>
+<ul>
+<li><p>Performs analysis at the original data resolution.</p></li>
+</ul>
+</li>
+<li><p>MCF Unified Approach:</p>
+<ul>
+<li><p>Provides the same conceptual workflow and operations regardless of whether a vector or raster data model is used.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "giswqs/jupyter-book-demo",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="focal_ops.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Focal Operation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="global_ops_and_set_mu.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Global Operations, Effective Neighborhoods, and Analysis MUs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-compute-framework">8.1. Map Compute Framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topics">8.2. Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-zones">8.3. Raster Zones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-zones-as-mapping-units">8.4. Raster Zones as Mapping Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-operations-with-raster-zones">8.5. Local Operations with Raster Zones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#focal-operations-with-raster-zones">8.6. Focal Operations with Raster Zones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-operations-with-raster-zones">8.7. Global Operations with Raster Zones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-zones-as-zonal-neighborhoods">8.8. Raster Zones as Zonal Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zonal-operations-in-map-algebra-ma">8.9. Zonal Operations in Map Algebra (MA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zonal-operations-in-the-map-compute-framework-mcf">8.10. Zonal Operations in the Map Compute Framework (MCF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-algebra-vs-map-compute-framework">8.11. Map Algebra vs. Map Compute Framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-parity-and-parsimony">8.12. Summary: Parity and Parsimony</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-algebra-vs-map-compute">8.13. Map Algebra vs Map Compute</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-zonal-operations-in-mcf">8.14. No Zonal Operations in MCF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arcgis-zonal-toolset">8.15. ArcGIS Zonal Toolset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siren-population-coverage-analysis-example">8.16. Siren Population Coverage Analysis Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siren-population-coverage-analysis-in-vector-data-model">8.17. Siren Population Coverage Analysis in Vector Data Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#population-coverage-analysis-in-vector-arcgis-workflows">8.18. Population Coverage Analysis in Vector (ArcGIS Workflows)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-siren-zone-raster-layer">8.19. Calculate Siren Zone Raster Layer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-vs-raster-analysis-summary">8.20. Vector vs Raster Analysis Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xingong Li
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

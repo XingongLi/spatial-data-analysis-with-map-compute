@@ -1,0 +1,873 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10. Neighborhood Relation Operations, Connectivity, and Distance Analysis &#8212; Jupyter Book Demo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/nbr_ops_connectivity_distance';</script>
+    <link rel="canonical" href="https://giswqs.github.io/jupyter-book-demo/book/nbr_ops_connectivity_distance.html" />
+    <link rel="icon" href="../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11. Multi-criteria Suitability Analysis" href="suitability.html" />
+    <link rel="prev" title="9. Global Operations, Effective Neighborhoods, and Analysis MUs" href="global_ops_and_set_mu.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Jupyter Book Demo - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Jupyter Book Demo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="geographic_data.html">1. Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_statistics.html">2. Basic Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colocation.html">3. Spatial Relations: Co-location</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distance.html">4. Spatial Relationship: Distance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Map Compute Framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="map_compute.html">5. The Map Compute Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local_ops.html">6. Local Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="focal_ops.html">7. Focal Operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zones.html">8. Zone as Mapping Unit and Neighborhood</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global_ops_and_set_mu.html">9. Global Operations, Effective Neighborhoods, and Analysis MUs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spatial Analysis with Map Compute Framework</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Neighborhood Relation Operations, Connectivity, and Distance Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="suitability.html">11. Multi-criteria Suitability Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="point_randomness.html">12. Point Pattern Analysis: Randomness</a></li>
+<li class="toctree-l1"><a class="reference internal" href="point_cluster.html">13. Point Pattern Analysis: Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spatial_autocorrelation.html">14. Spatial Autocorrelation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_jupyterbook.html">How to write a book using Jupyter-Book on Github</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/giswqs/jupyter-book-demo/main?urlpath=tree/book/nbr_ops_connectivity_distance.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/giswqs/jupyter-book-demo/blob/main/book/nbr_ops_connectivity_distance.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/edit/main/book/nbr_ops_connectivity_distance.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/giswqs/jupyter-book-demo/issues/new?title=Issue%20on%20page%20%2Fbook/nbr_ops_connectivity_distance.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/nbr_ops_connectivity_distance.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/book/nbr_ops_connectivity_distance.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Neighborhood Relation Operations, Connectivity, and Distance Analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-compute-framework">10.1. Map Compute Framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neighborhood-relation-operations">10.2. Neighborhood Relation Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siren-population-coverage-analysis-vector-data-model">10.3. Siren Population Coverage Analysis (Vector Data Model)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nbrlocation-with-raster-distance-neighborhoods">10.4. NbrLocation with Raster Distance Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#buffer-tool-as-a-neighborhood-relation-operation">10.5. Buffer Tool as a Neighborhood Relation Operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nbrlocationfrequency-operation">10.6. NbrLocationFrequency Operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-of-neighborhood-overlapping-nbroverlapdegree">10.7. Degree of Neighborhood Overlapping (NbrOverlapDegree)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mu-graph-through-neighborhoods-nbrgraph">10.8. MU Graph Through Neighborhoods (NbrGraph)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-connectivity-analysis">10.9. Spatial Connectivity Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-adjacency-as-neighborhood">10.10. Spatial Adjacency as Neighborhood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-connected-regions-regiongroup">10.11. Identifying Connected Regions (RegionGroup)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity-with-distance-based-neighborhoods">10.12. Connectivity with Distance-Based Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-connectivity-for-features">10.13. Nearest Neighbor Connectivity for Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean-distance-and-direction">10.14. Euclidean Distance and Direction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-distance-analysis">10.15. Cost Distance Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proximity-regions-thiessen-polygons">10.16. Proximity Regions (Thiessen Polygons)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identity-of-the-nearest-source-zone">10.17. Identity of the Nearest Source Zone</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="neighborhood-relation-operations-connectivity-and-distance-analysis">
+<h1><span class="section-number">10. </span>Neighborhood Relation Operations, Connectivity, and Distance Analysis<a class="headerlink" href="#neighborhood-relation-operations-connectivity-and-distance-analysis" title="Link to this heading">#</a></h1>
+<p>Topics:</p>
+<ul class="simple">
+<li><p>Neighborhood Relation Operations</p></li>
+<li><p>Spatial Connectivity Analysis</p></li>
+<li><p>Distance Analysis</p></li>
+</ul>
+<section id="map-compute-framework">
+<h2><span class="section-number">10.1. </span>Map Compute Framework<a class="headerlink" href="#map-compute-framework" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Three kinds of analysis/mapping units (MUs) in maps:</p>
+<ul>
+<li><p>Cells, raster zones, and features</p></li>
+</ul>
+</li>
+<li><p>Four kinds of operations:</p>
+<ul>
+<li><p>Local, focal, and global operations based on the spatial scope of the neighborhood</p></li>
+<li><p>Neighborhood relation operations</p></li>
+</ul>
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Mapping Units</p></th>
+<th class="head text-left"><p>Neighborhood Relation: Local</p></th>
+<th class="head text-left"><p>Neighborhood Relation: Focal</p></th>
+<th class="head text-left"><p>Neighborhood Relation: Global</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Cells</p></td>
+<td class="text-left"><p>Local</p></td>
+<td class="text-left"><p>Focal</p></td>
+<td class="text-left"><p>Global</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Raster zones</p></td>
+<td class="text-left"><p>Local</p></td>
+<td class="text-left"><p>Focal</p></td>
+<td class="text-left"><p>Global</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Features (vectors)</p></td>
+<td class="text-left"><p>Local</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="neighborhood-relation-operations">
+<h2><span class="section-number">10.2. </span>Neighborhood Relation Operations<a class="headerlink" href="#neighborhood-relation-operations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Local, focal, and global operations manipulate the data within the neighborhood associated with a focus MU.</p></li>
+<li><p>Neighborhood relation operations characterize all the neighborhoods associated with the MUs on a map.</p></li>
+<li><p>Example: <strong>NbrLocation</strong> represents the location covered by all the neighborhoods of a set of features (points, lines, or polygons).</p></li>
+</ul>
+</section>
+<section id="siren-population-coverage-analysis-vector-data-model">
+<h2><span class="section-number">10.3. </span>Siren Population Coverage Analysis (Vector Data Model)<a class="headerlink" href="#siren-population-coverage-analysis-vector-data-model" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Circle neighborhood is created for each siren point.</p></li>
+<li><p>Location covered by all neighborhoods is found by combining all circle neighborhoods into a multi-part coverage polygon.</p></li>
+<li><p>This is a neighborhood relation operation (NbrLocation).</p></li>
+<li><p>Local sum is performed using combined buffers as the mapping unit.</p></li>
+<li><p>Effective neighbors are found by intersecting the coverage polygon with census blocks.</p></li>
+</ul>
+</section>
+<section id="nbrlocation-with-raster-distance-neighborhoods">
+<h2><span class="section-number">10.4. </span>NbrLocation with Raster Distance Neighborhoods<a class="headerlink" href="#nbrlocation-with-raster-distance-neighborhoods" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The operation can be performed with raster data using distance-based neighborhoods.</p></li>
+<li><p>Example: A neighborhood defined by distance d &lt;= 3 cell units.</p></li>
+</ul>
+</section>
+<section id="buffer-tool-as-a-neighborhood-relation-operation">
+<h2><span class="section-number">10.5. </span>Buffer Tool as a Neighborhood Relation Operation<a class="headerlink" href="#buffer-tool-as-a-neighborhood-relation-operation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The Buffer tool in GIS is a neighborhood relation operation where the buffer is the neighborhood of each feature.</p></li>
+<li><p>It creates an output map as a single multi-part polygon representing the location covered by at least one neighborhood.</p></li>
+<li><p>Alternatively, it can create a set of isolated polygons, each with a unique ID.</p></li>
+</ul>
+</section>
+<section id="nbrlocationfrequency-operation">
+<h2><span class="section-number">10.6. </span>NbrLocationFrequency Operation<a class="headerlink" href="#nbrlocationfrequency-operation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>For features: Calculates the frequency of a location that belongs to overlapping neighborhoods.</p></li>
+<li><p>ArcGIS Pro Tool: “Count Overlapping Features” generates planarized overlapping features with a count written to the output.</p></li>
+<li><p>For cells: A value raster specifies MUs.</p>
+<ul>
+<li><p>Neighborhoods can include “+”, 3x3 window, zonal, or watershed neighborhoods.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="degree-of-neighborhood-overlapping-nbroverlapdegree">
+<h2><span class="section-number">10.7. </span>Degree of Neighborhood Overlapping (NbrOverlapDegree)<a class="headerlink" href="#degree-of-neighborhood-overlapping-nbroverlapdegree" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Quantifies the degree of neighborhood overlapping.</p></li>
+<li><p>For 2 neighborhoods: (Area of Intersection) / (Area of Union), resulting in a value between 0 and 1.</p></li>
+<li><p>For more than 2 neighborhoods: (Frequency weighted area of locations with frequency &gt;=2) / (Area of locations with frequency &gt;=1).</p></li>
+<li><p>Typical values:</p>
+<ul>
+<li><p>Local neighborhoods: 0 (no overlap).</p></li>
+<li><p>Focal neighborhoods (3x3 window): approximately 0.27.</p></li>
+<li><p>Zonal neighborhoods: example value of 0.52.</p></li>
+<li><p>Global neighborhoods: always 1.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mu-graph-through-neighborhoods-nbrgraph">
+<h2><span class="section-number">10.8. </span>MU Graph Through Neighborhoods (NbrGraph)<a class="headerlink" href="#mu-graph-through-neighborhoods-nbrgraph" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>An NbrGraph operation forms a mapping unit spatial graph through MU neighborhoods.</p></li>
+<li><p>A neighborhood defines a relationship where a MU is “connected” to its neighbors, forming a link.</p></li>
+<li><p>Interactions can occur:</p>
+<ul>
+<li><p>When a MU is in another MU’s neighborhood.</p></li>
+<li><p>When a MU’s neighborhood co-locates with the neighborhood of another MU (e.g., buffers overlap).</p></li>
+</ul>
+</li>
+<li><p>MUs act as nodes with geographical locations, and links among MUs have weights characterizing their relation.</p></li>
+</ul>
+</section>
+<section id="spatial-connectivity-analysis">
+<h2><span class="section-number">10.9. </span>Spatial Connectivity Analysis<a class="headerlink" href="#spatial-connectivity-analysis" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Connectivity analysis identifies groups of connected MUs, known as sub-graphs or components.</p></li>
+<li><p>MU graphs can be formed by various neighborhoods:</p>
+<ul>
+<li><p>Spatial adjacency (4- or 8-connectivity).</p></li>
+<li><p>Distance-based neighborhoods.</p></li>
+<li><p>Watershed or Viewshed.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="spatial-adjacency-as-neighborhood">
+<h2><span class="section-number">10.10. </span>Spatial Adjacency as Neighborhood<a class="headerlink" href="#spatial-adjacency-as-neighborhood" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A cell is spatially adjacent to its immediate neighbors.</p></li>
+<li><p>4-adjacency (“+” neighborhood): Cells sharing an edge.</p></li>
+<li><p>8-adjacency (3x3 window neighborhood): Cells sharing an edge or a point.</p></li>
+<li><p>Adjacency usually exists between cells with the same value (e.g., foreground vs. background).</p></li>
+</ul>
+</section>
+<section id="identifying-connected-regions-regiongroup">
+<h2><span class="section-number">10.11. </span>Identifying Connected Regions (RegionGroup)<a class="headerlink" href="#identifying-connected-regions-regiongroup" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>RegionGroup identifies and groups connected cells with the same value into regions.</p></li>
+<li><p>A zone consists of all cells with the same value.</p></li>
+<li><p>A region (or component) consists of cells that have the same value AND are spatially connected.</p></li>
+<li><p>Each unique region is assigned a unique ID number.</p></li>
+</ul>
+</section>
+<section id="connectivity-with-distance-based-neighborhoods">
+<h2><span class="section-number">10.12. </span>Connectivity with Distance-Based Neighborhoods<a class="headerlink" href="#connectivity-with-distance-based-neighborhoods" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Connectivity can be defined by distance rather than just adjacency.</p></li>
+<li><p>A 1-cell radius circle is equivalent to 4-adjacency.</p></li>
+<li><p>A square root of 2 cell size radius is equivalent to 8-adjacency.</p></li>
+<li><p>Cells may be connected even if not immediately adjacent, depending on the neighborhood radius used.</p></li>
+</ul>
+</section>
+<section id="nearest-neighbor-connectivity-for-features">
+<h2><span class="section-number">10.13. </span>Nearest Neighbor Connectivity for Features<a class="headerlink" href="#nearest-neighbor-connectivity-for-features" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The nearest point can be defined as the neighborhood of a point.</p></li>
+<li><p>This forms a directed graph since nearness is not always symmetric.</p></li>
+<li><p>Sub-graph analysis then groups these points, lines, or polygons based on these connections.</p></li>
+</ul>
+</section>
+<section id="euclidean-distance-and-direction">
+<h2><span class="section-number">10.14. </span>Euclidean Distance and Direction<a class="headerlink" href="#euclidean-distance-and-direction" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Euclidean Distance: Calculates the straight-line distance to the nearest source.</p></li>
+<li><p>Euclidean Direction: Calculates the direction (in degrees) to the nearest source.</p></li>
+<li><p>These are treated as Global Operations within the framework.</p></li>
+</ul>
+</section>
+<section id="cost-distance-analysis">
+<h2><span class="section-number">10.15. </span>Cost Distance Analysis<a class="headerlink" href="#cost-distance-analysis" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Movement cost varies across a friction surface.</p></li>
+<li><p>Accumulated Cost Surface: A global operation determining the minimum cost to reach a source.</p></li>
+<li><p>Identify the least-cost path based on the accumulated surface.</p></li>
+</ul>
+</section>
+<section id="proximity-regions-thiessen-polygons">
+<h2><span class="section-number">10.16. </span>Proximity Regions (Thiessen Polygons)<a class="headerlink" href="#proximity-regions-thiessen-polygons" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A neighborhood relation operation where the study area is divided into regions based on the nearest source feature.</p></li>
+<li><p>Boundaries are the perpendicular bisectors of the lines connecting neighboring source points.</p></li>
+</ul>
+</section>
+<section id="identity-of-the-nearest-source-zone">
+<h2><span class="section-number">10.17. </span>Identity of the Nearest Source Zone<a class="headerlink" href="#identity-of-the-nearest-source-zone" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Every cell receives the ID of the nearest source feature.</p></li>
+<li><p>This is also referred to as “Allocation” in GIS software.</p></li>
+<li><p>In this operation, cells are the mapping units and the neighborhood is the nearest source zone.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "giswqs/jupyter-book-demo",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="global_ops_and_set_mu.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Global Operations, Effective Neighborhoods, and Analysis MUs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="suitability.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Multi-criteria Suitability Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map-compute-framework">10.1. Map Compute Framework</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neighborhood-relation-operations">10.2. Neighborhood Relation Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siren-population-coverage-analysis-vector-data-model">10.3. Siren Population Coverage Analysis (Vector Data Model)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nbrlocation-with-raster-distance-neighborhoods">10.4. NbrLocation with Raster Distance Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#buffer-tool-as-a-neighborhood-relation-operation">10.5. Buffer Tool as a Neighborhood Relation Operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nbrlocationfrequency-operation">10.6. NbrLocationFrequency Operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-of-neighborhood-overlapping-nbroverlapdegree">10.7. Degree of Neighborhood Overlapping (NbrOverlapDegree)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mu-graph-through-neighborhoods-nbrgraph">10.8. MU Graph Through Neighborhoods (NbrGraph)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-connectivity-analysis">10.9. Spatial Connectivity Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-adjacency-as-neighborhood">10.10. Spatial Adjacency as Neighborhood</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-connected-regions-regiongroup">10.11. Identifying Connected Regions (RegionGroup)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity-with-distance-based-neighborhoods">10.12. Connectivity with Distance-Based Neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-connectivity-for-features">10.13. Nearest Neighbor Connectivity for Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean-distance-and-direction">10.14. Euclidean Distance and Direction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-distance-analysis">10.15. Cost Distance Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proximity-regions-thiessen-polygons">10.16. Proximity Regions (Thiessen Polygons)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identity-of-the-nearest-source-zone">10.17. Identity of the Nearest Source Zone</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xingong Li
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
